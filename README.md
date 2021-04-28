@@ -46,17 +46,20 @@ https://www.brendangregg.com/systems-performance-2nd-edition-book.html.
 For troubleshooting tips see
 https://github.com/myllynen/rhel-troubleshooting-guide.
 
+For illustration in which areas different tools operate see
+https://www.brendangregg.com/Perf/linux_observability_tools.png.
+
 ## Process Monitoring
 
 Process monitoring related documentation references:
 
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/getting-started-with-perf_monitoring-and-managing-system-status-and-performance
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/getting-started-with-flamegraphs_monitoring-and-managing-system-status-and-performance
-* https://blog.dbi-services.com/linux-perf-top-basics-understand-the/
-* https://www.brendangregg.com/linuxperf.html
-* https://www.brendangregg.com/perf.html
-* https://github.com/iovisor/bpftrace
-* https://github.com/iovisor/bcc
+* [RHEL Getting started with perf guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/getting-started-with-perf_monitoring-and-managing-system-status-and-performance)
+* [RHEL Getting started with flamegraphs guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/getting-started-with-flamegraphs_monitoring-and-managing-system-status-and-performance)
+* [Linux perf-top basics: understand the % blog post](https://blog.dbi-services.com/linux-perf-top-basics-understand-the/)
+* [Linux Performance page by Brendan Gregg](https://www.brendangregg.com/linuxperf.html)
+* [perf Examples page by Brendan Gregg](https://www.brendangregg.com/perf.html)
+* [bpftrace GitHub page](https://github.com/iovisor/bpftrace)
+* [bcc GitHub page](https://github.com/iovisor/bcc)
 
 ### Overall system status
 
@@ -262,15 +265,15 @@ perf sched timehist -Mw --state | grep PROCNAME
 
 CPU related documentation references:
 
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/reviewing-a-system-using-tuna-interface_monitoring-and-managing-system-status-and-performance
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/monitoring-system-performance-with-perf_monitoring-and-managing-system-status-and-performance
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/configuring-an-operating-system-to-optimize-cpu-utilization_monitoring-and-managing-system-status-and-performance
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_for_real_time/8/html/tuning_guide/index
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_monitoring_and_updating_the_kernel/index
-* https://www.redhat.com/cms/managed-files/Handout%20Performance%20Analysis%20and%20Tuning%20Red%20Hat%20Enterprise%20Linux%202019.pdf
-* https://www.brendangregg.com/blog/2017-05-09/cpu-utilization-is-wrong.html
-* https://jvns.ca/blog/2017/07/05/linux-tracing-systems/
-* https://www.brendangregg.com/linuxperf.html
+* [RHEL Reviewing a system using tuna interface guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/reviewing-a-system-using-tuna-interface_monitoring-and-managing-system-status-and-performance)
+* [RHEL Monitoring system performance with perf guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/monitoring-system-performance-with-perf_monitoring-and-managing-system-status-and-performance)
+* [RHEL Configuring an operating system to optimize CPU utilization guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/configuring-an-operating-system-to-optimize-cpu-utilization_monitoring-and-managing-system-status-and-performance)
+* [RHEL RT Tuning Guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_for_real_time/8/html/tuning_guide/index)
+* [RHEL Managing, monitoring, and updating the kernel guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_monitoring_and_updating_the_kernel/index)
+* [RHEL Performance Analysis and Tuning PDF](https://www.redhat.com/cms/managed-files/Handout%20Performance%20Analysis%20and%20Tuning%20Red%20Hat%20Enterprise%20Linux%202019.pdf)
+* [CPU Utilization is Wrong blog post](https://www.brendangregg.com/blog/2017-05-09/cpu-utilization-is-wrong.html)
+* [Linux tracing systems & how they fit together blog post](https://jvns.ca/blog/2017/07/05/linux-tracing-systems/)
+* [Linux Performance page by Brendan Gregg](https://www.brendangregg.com/linuxperf.html)
 
 ### Hardware CPU configuration
 
@@ -323,7 +326,7 @@ parameters different tuned profiles are altering by reviewing the tuned
 profile configuration files under _/usr/lib/tuned_.
 
 Custom tuned profiles can be created if needed, see
-https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/customizing-tuned-profiles_monitoring-and-managing-system-status-and-performance.
+[RHEL Customizing Tuned profiles guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/customizing-tuned-profiles_monitoring-and-managing-system-status-and-performance).
 
 ### System-wide Configuration and CPU Related Kernel Parameters
 
@@ -390,19 +393,19 @@ skew_tick=1
 Further tuning tips especially for low latency and real-time workloads
 are described in the RHEL RT tuning guide and RHKB articles:
 
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_for_real_time/8/html/tuning_guide/index
+* [RHEL RT Tuning Guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_for_real_time/8/html/tuning_guide/index)
 * https://access.redhat.com/solutions/202743
 * https://access.redhat.com/articles/65410
 
 ### Additional configurations and tools
 
 For a system partitioning example see
-https://www.redhat.com/cms/managed-files/Handout%20Performance%20Analysis%20and%20Tuning%20Red%20Hat%20Enterprise%20Linux%202019.pdf.
+[RHEL Performance Analysis and Tuning PDF](https://www.redhat.com/cms/managed-files/Handout%20Performance%20Analysis%20and%20Tuning%20Red%20Hat%20Enterprise%20Linux%202019.pdf).
 
 [tuna(8)](https://www.mankier.com/8/tuna) tool can help reducing
 complexity of system tuning tasks:
 
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/reviewing-a-system-using-tuna-interface_monitoring-and-managing-system-status-and-performance
+* [RHEL Reviewing a system using tuna interface guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/reviewing-a-system-using-tuna-interface_monitoring-and-managing-system-status-and-performance)
 * https://access.redhat.com/solutions/2171211
 * https://access.redhat.com/solutions/2144921
 
@@ -495,16 +498,16 @@ sysbench ...
 
 Memory related documentation references:
 
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/assembly_configuring-huge-pages_monitoring-and-managing-system-status-and-performance
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/assembly_configuring-an-operating-system-to-optimize-memory-access_monitoring-and-managing-system-status-and-performance
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/profiling-memory-allocation-with-numastat_monitoring-and-managing-system-status-and-performance
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/profiling-memory-accesses-with-perf-mem_monitoring-and-managing-system-status-and-performance
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/detecting_false_sharing_with_perf_c2c
-* https://www.redhat.com/cms/managed-files/Handout%20Performance%20Analysis%20and%20Tuning%20Red%20Hat%20Enterprise%20Linux%202019.pdf
-* https://chrisdown.name/2018/01/02/in-defence-of-swap.html
-* https://www.kernel.org/doc/Documentation/sysctl/vm.txt
-* https://access.redhat.com/articles/rhel-limits
-* https://www.brendangregg.com/linuxperf.html
+* [RHEL Configuring huge pages guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/assembly_configuring-huge-pages_monitoring-and-managing-system-status-and-performance)
+* [RHEL Configuring an operating system to optimize memory access guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/assembly_configuring-an-operating-system-to-optimize-memory-access_monitoring-and-managing-system-status-and-performance)
+* [RHEL Profiling memory allocation with numastat guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/profiling-memory-allocation-with-numastat_monitoring-and-managing-system-status-and-performance)
+* [RHEL Profiling memory accesses with perf mem guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/profiling-memory-accesses-with-perf-mem_monitoring-and-managing-system-status-and-performance)
+* [RHEL Detecting false sharing with perf c2c guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/detecting_false_sharing_with_perf_c2c)
+* [RHEL Performance Analysis and Tuning PDF](https://www.redhat.com/cms/managed-files/Handout%20Performance%20Analysis%20and%20Tuning%20Red%20Hat%20Enterprise%20Linux%202019.pdf)
+* [In defence of swap: common misconceptions blog post](https://chrisdown.name/2018/01/02/in-defence-of-swap.html)
+* [Linux kernel VM sysctl document](https://www.kernel.org/doc/Documentation/sysctl/vm.txt)
+* [RHEL technology capabilities and limits page](https://access.redhat.com/articles/rhel-limits)
+* [Linux Performance page by Brendan Gregg](https://www.brendangregg.com/linuxperf.html)
 
 ### Hardware and System-wide Memory Configuration
 
@@ -759,15 +762,14 @@ stress ...
 
 IO related documentation references:
 
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/factors-affecting-i-o-and-file-system-performance_monitoring-and-managing-system-status-and-performance
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_logical_volumes/index
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_device_mapper_multipath/index
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/deduplicating_and_compressing_storage/index
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/deduplicating_and_compressing_logical_volumes_on_rhel/index
-* https://www.brendangregg.com/Perf/linux_observability_tools.png
-* https://www.kernel.org/doc/Documentation/sysctl/vm.txt
-* https://access.redhat.com/articles/rhel-limits
-* https://www.brendangregg.com/linuxperf.html
+* [RHEL Factors affecting I/O and file system performance guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/factors-affecting-i-o-and-file-system-performance_monitoring-and-managing-system-status-and-performance)
+* [RHEL Configuring and managing logical volumes guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_logical_volumes/index)
+* [RHEL Configuring device mapper multipath guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_device_mapper_multipath/index)
+* [RHEL Deduplicating and compressing storage guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/deduplicating_and_compressing_storage/index)
+* [RHEL Deduplicating and compressing logical volumes on RHEL guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/deduplicating_and_compressing_logical_volumes_on_rhel/index)
+* [Linux kernel VM sysctl document](https://www.kernel.org/doc/Documentation/sysctl/vm.txt)
+* [RHEL technology capabilities and limits page](https://access.redhat.com/articles/rhel-limits)
+* [Linux Performance page by Brendan Gregg](https://www.brendangregg.com/linuxperf.html)
 
 ### Block Device and File System Layout and Details
 
@@ -909,14 +911,14 @@ fio test.fio
 
 Network related documentation references:
 
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/index
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/configuring-rhel-to-optimize-access-to-network-resources_monitoring-and-managing-system-status-and-performance
-* https://blog.packagecloud.io/eng/2016/10/11/monitoring-tuning-linux-networking-stack-receiving-data-illustrated/
-* https://blog.packagecloud.io/eng/2016/06/22/monitoring-tuning-linux-networking-stack-receiving-data/
-* https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt
-* https://www.kernel.org/doc/Documentation/networking/scaling.txt
-* https://access.redhat.com/solutions/4272142
-* https://www.brendangregg.com/linuxperf.html
+* [RHEL Configuring and managing networking guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/index)
+* [RHEL Configuring RHEL to optimize access to network resources guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/configuring-rhel-to-optimize-access-to-network-resources_monitoring-and-managing-system-status-and-performance)
+* [Illustrated Guide to Monitoring and Tuning the Linux Networking Stack blog post](https://blog.packagecloud.io/eng/2016/10/11/monitoring-tuning-linux-networking-stack-receiving-data-illustrated/)
+* [Monitoring and Tuning the Linux Networking Stack blog post](https://blog.packagecloud.io/eng/2016/06/22/monitoring-tuning-linux-networking-stack-receiving-data/)
+* [Linux kernel IP sysctl documentation](https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt)
+* [Linux kernel network scaling documentation](https://www.kernel.org/doc/Documentation/networking/scaling.txt)
+* [RHKB How does tcpdump capture packets? article](https://access.redhat.com/solutions/4272142)
+* [Linux Performance page by Brendan Gregg](https://www.brendangregg.com/linuxperf.html)
 
 ### NIC and System-wide Network Configuration
 
@@ -1057,7 +1059,7 @@ net.ipv4.tcp_ecn = 1
 ### Additional Optimizations
 
 Consider utilizing RSS / RPS / RFS where needed and supported, see
-https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/configuring-rhel-to-optimize-access-to-network-resources_monitoring-and-managing-system-status-and-performance.
+[RHEL Configuring RHEL to optimize access to network resources guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/configuring-rhel-to-optimize-access-to-network-resources_monitoring-and-managing-system-status-and-performance).
 
 ### Configuring applications and services
 
@@ -1121,9 +1123,9 @@ iperf -V ...
 
 ## Additional Information
 
-* https://www.brendangregg.com/systems-performance-2nd-edition-book.html - Systems Performance: Enterprise and the Cloud book
-* https://www.brendangregg.com/linuxperf.html - Linux Performance page by Brendan Gregg
-* https://github.com/myllynen/rhel-troubleshooting-guide - RHEL Troubleshooting Guide
-* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/ - RHEL documentation
-* https://access.redhat.com/knowledgebase/ - Red Hat Knowledge Base
-* https://access.redhat.com/ - Red Hat Customer Portal
+* [Systems Performance: Enterprise and the Cloud book](https://www.brendangregg.com/systems-performance-2nd-edition-book.html)
+* [Linux Performance page by Brendan Gregg](https://www.brendangregg.com/linuxperf.html)
+* [RHEL Troubleshooting Guide](https://github.com/myllynen/rhel-troubleshooting-guide)
+* [RHEL documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/)
+* [Red Hat Knowledge Base](https://access.redhat.com/knowledgebase/)
+* [Red Hat Customer Portal](https://access.redhat.com/)
