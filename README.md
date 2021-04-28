@@ -61,7 +61,7 @@ Process monitoring related documentation references:
 * [bpftrace GitHub page](https://github.com/iovisor/bpftrace)
 * [bcc GitHub page](https://github.com/iovisor/bcc)
 
-### Overall system status
+### Overall System Status
 
 Basic commands to see the current status of the system:
 
@@ -275,7 +275,7 @@ CPU related documentation references:
 * [Linux tracing systems & how they fit together blog post](https://jvns.ca/blog/2017/07/05/linux-tracing-systems/)
 * [Linux Performance page by Brendan Gregg](https://www.brendangregg.com/linuxperf.html)
 
-### Hardware CPU configuration
+### Hardware CPU Configuration
 
 There are usually a few CPU related hardware configurations available.
 On performance critical systems all power saving options (including C-
@@ -397,7 +397,7 @@ are described in the RHEL RT tuning guide and RHKB articles:
 * https://access.redhat.com/solutions/202743
 * https://access.redhat.com/articles/65410
 
-### Additional configurations and tools
+### Additional Configurations and Tools
 
 For a system partitioning example see
 [RHEL Performance Analysis and Tuning PDF](https://www.redhat.com/cms/managed-files/Handout%20Performance%20Analysis%20and%20Tuning%20Red%20Hat%20Enterprise%20Linux%202019.pdf).
@@ -856,7 +856,7 @@ Consider using dedicated partitions as needed and per vendor
 recommendations. For recommendations for applications please refer to
 vendor documentation.
 
-### IO related monitoring and testing
+### IO Related Monitoring and Testing
 
 #### System-wide IO Monitoring
 
@@ -1061,7 +1061,7 @@ net.ipv4.tcp_ecn = 1
 Consider utilizing RSS / RPS / RFS where needed and supported, see
 [RHEL Configuring RHEL to optimize access to network resources guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/configuring-rhel-to-optimize-access-to-network-resources_monitoring-and-managing-system-status-and-performance).
 
-### Configuring applications and services
+### Configuring Applications and Services
 
 For any local communication always use the localhost address only, not
 the public IP or FQDN, both for performance and security reasons.
@@ -1096,7 +1096,7 @@ BCC PMDA netproc
 module](https://man7.org/linux/man-pages/man1/pmdabcc.1.html), and
 _tcp*_ commands from the _bcc-tools_ package.
 
-#### Per-process monitoring
+#### Per-process Monitoring
 
 ```
 # Monitor per-port/pid network connections
