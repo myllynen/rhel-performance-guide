@@ -21,7 +21,8 @@ problem is left to the reader. Depending on the case either approach
 might turn out to be the more cost-effective one. However, some of the
 considerations and hints below might provide insight when and what kind
 of additional resources would be most beneficial in a particular
-situation.
+situation. In general, right-sizing (virtual) hardware might be
+difficult without good understanding of the workload characteristics.
 
 Web based performance monitoring tools like [basic Cockpit
 setup](https://opensource.com/article/20/11/cockpit-server-management),
