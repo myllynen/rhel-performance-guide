@@ -49,6 +49,9 @@ https://github.com/myllynen/rhel-troubleshooting-guide.
 For illustration in which areas different tools operate see
 https://www.brendangregg.com/Perf/linux_observability_tools.png.
 
+For a PCP primer see
+https://access.redhat.com/articles/2450251.
+
 ## Process Monitoring
 
 Process monitoring related documentation references:
