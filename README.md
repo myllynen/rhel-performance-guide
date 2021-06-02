@@ -341,13 +341,13 @@ recommendations and consider application parameter tuning as well.
 
 <pre>
 # RHEL 8 boot parameter to provide PSI metrics under /proc/pressure
-# <a href="https://access.redhat.com/solutions/5211481">https://access.redhat.com/solutions/5211481</a>
-# <a href="https://facebookmicrosites.github.io/psi/docs/overview.html">https://facebookmicrosites.github.io/psi/docs/overview.html</a>
+# <a href="https://access.redhat.com/solutions/5211481">Is Pressure Stall Information (PSI) supported in RHEL?</a>
+# <a href="https://facebookmicrosites.github.io/psi/docs/overview.html">Getting Started with PSI</a>
 psi=1
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/769683">https://access.redhat.com/solutions/769683</a>
+# <a href="https://access.redhat.com/solutions/769683">Why is the scaling_governor file missing on the RHEL system?</a>
 echo performance > /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 </pre>
 
@@ -366,7 +366,7 @@ x86_energy_perf_policy -r
 
 <pre>
 # Kernel scheduler related sysctl parameters set by tuned profiles
-# <a href="https://access.redhat.com/solutions/177953">https://access.redhat.com/solutions/177953</a>
+# <a href="https://access.redhat.com/solutions/177953">About use of kernel parameter 'sched_*'</a>
 kernel.sched_wakeup_granularity_ns = N
 kernel.sched_min_granularity_ns = N
 kernel.sched_migration_cost_ns = N
@@ -376,8 +376,8 @@ kernel.sched_autogroup_enabled = 1
 <pre>
 # Latency-sensitive workloads might benefit from
 # system partitioning and dynamic tickless behavior
-# <a href="https://access.redhat.com/articles/3720611">https://access.redhat.com/articles/3720611</a>
-# <a href="https://access.redhat.com/solutions/2273531">https://access.redhat.com/solutions/2273531</a>
+# <a href="https://access.redhat.com/articles/3720611">Discussion of isolcpus=, nohz_full= and rcu_nocbs= kernel parameters</a>
+# <a href="https://access.redhat.com/solutions/2273531">All about nohz_full kernel parameter</a>
 nohz_full=2-5,8-11 isolcpus=2-5,8-11
 </pre>
 
@@ -389,7 +389,7 @@ cat /sys/devices/system/cpu/nohz_full
 
 <pre>
 # Other parameters to consider for highly latency-sensitive workloads
-# <a href="https://access.redhat.com/solutions/367773">https://access.redhat.com/solutions/367773</a>
+# <a href="https://access.redhat.com/solutions/367773">How do I disable MCE function?</a>
 mce=ignore_ce
 skew_tick=1
 </pre>
@@ -398,8 +398,8 @@ Further tuning tips especially for low latency and real-time workloads
 are described in the RHEL RT tuning guide and RHKB articles:
 
 * [RHEL RT Tuning Guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_for_real_time/8/html/tuning_guide/index)
-* https://access.redhat.com/solutions/202743
-* https://access.redhat.com/articles/65410
+* [What are CPU "C-states" and how to disable them if needed?](https://access.redhat.com/solutions/202743)
+* [Power management features and latency spikes](https://access.redhat.com/articles/65410)
 
 ### Additional Configurations and Tools
 
@@ -410,8 +410,8 @@ For a system partitioning example see
 complexity of system tuning tasks:
 
 * [RHEL Reviewing a system using tuna interface guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/reviewing-a-system-using-tuna-interface_monitoring-and-managing-system-status-and-performance)
-* https://access.redhat.com/solutions/2171211
-* https://access.redhat.com/solutions/2144921
+* [How can I reduce jitter by using CPU and IRQ pinning with tuna?](https://access.redhat.com/solutions/2171211)
+* [How can I reduce jitter by using CPU and IRQ pinning without using tuna?](https://access.redhat.com/solutions/2144921)
 
 [nice(1)](https://man7.org/linux/man-pages/man1/nice.1.html) can be used
 to change and run a process with modified scheduling priority.
@@ -540,14 +540,14 @@ remain long used after a memory pressure situation.
 
 See the following articles for more discussion on swap:
 
-* https://access.redhat.com/solutions/15244
+* [What is the recommended swap size for Red Hat platforms?](https://access.redhat.com/solutions/15244)
 * https://chrisdown.name/2018/01/02/in-defence-of-swap.html
 * https://www.redhat.com/en/blog/do-we-really-need-swap-modern-systems
 
 In case the system runs out of memory the dreaded OOM-killer will act
 (the per-process oom related tunables are described in the second link):
 
-* https://access.redhat.com/solutions/66458
+* [How does the OOM-Killer select a task to kill?](https://access.redhat.com/solutions/66458)
 * https://www.kernel.org/doc/Documentation/filesystems/proc.txt
 * https://man7.org/linux/man-pages/man8/systemd-oomd.service.8.html
 
@@ -567,9 +567,9 @@ should be changed when applications require more of these resources than
 is available by default. Please refer to application documentation for
 their exact requirements.
 
-* https://access.redhat.com/solutions/20519
-* https://access.redhat.com/solutions/431633
-* https://access.redhat.com/solutions/4968021
+* [What are the kernel parameters for IPC?](https://access.redhat.com/solutions/20519)
+* [What are the kernel parameters available for System V IPC tuning?](https://access.redhat.com/solutions/431633)
+* [Changing the semaphore value fails with large values](https://access.redhat.com/solutions/4968021)
 * https://www.kernel.org/doc/Documentation/sysctl/kernel.txt
 
 ```
@@ -597,10 +597,10 @@ rarely helpful. Note that some application vendors recommend disabling
 huge pages altogether; please refer to vendor documentation for the
 exact recommendations.
 
-* https://access.redhat.com/solutions/33613
-* https://access.redhat.com/solutions/46111
-* https://access.redhat.com/solutions/320303
-* https://access.redhat.com/articles/781653
+* [How can I configure hugepages in RHEL?](https://access.redhat.com/solutions/33613)
+* [How to use, monitor, and disable transparent hugepages in RHEL?](https://access.redhat.com/solutions/46111)
+* [How do I check for hugepages usage and what is using it?](https://access.redhat.com/solutions/320303)
+* [Examining Huge Pages or Transparent Huge Pages performance](https://access.redhat.com/articles/781653)
 * https://www.kernel.org/doc/Documentation/vm/hugetlbpage.txt
 * https://alexandrnikitin.github.io/blog/transparent-hugepages-measuring-the-performance-impact/
 
@@ -631,7 +631,7 @@ numastat -cmz
 # Show current NUMA statistics
 numastat -n
 # Show current kernel NUMA balancing parameters
-# <a href="https://access.redhat.com/solutions/1533463">https://access.redhat.com/solutions/1533463</a>
+# <a href="https://access.redhat.com/solutions/1533463">Automatic NUMA balancing in RHEL</a>
 grep -H . /proc/sys/kernel/numa*
 </pre>
 
@@ -667,25 +667,25 @@ vm.dirty_background_ratio = N
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/103833">https://access.redhat.com/solutions/103833</a>
-# <a href="https://access.redhat.com/solutions/3383811">https://access.redhat.com/solutions/3383811</a>
+# <a href="https://access.redhat.com/solutions/103833">What does swappiness do?</a>
+# <a href="https://access.redhat.com/solutions/3383811">How swappiness sysctl works in RHEL?</a>
 # <a href="https://www.kernel.org/doc/Documentation/sysctl/vm.txt">https://www.kernel.org/doc/Documentation/sysctl/vm.txt</a>
 vm.swappiness = N
 vm.vfs_cache_pressure = N
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/2209921">https://access.redhat.com/solutions/2209921</a>
+# <a href="https://access.redhat.com/solutions/2209921">What is kernel parameter vm.zone_reclaim_mode?</a>
 vm.zone_reclaim_mode = 1
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/336033">https://access.redhat.com/solutions/336033</a>
+# <a href="https://access.redhat.com/solutions/336033">What is the vm.min_free_kbytes parameter?</a>
 vm.min_free_kbytes = N
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/68612">https://access.redhat.com/solutions/68612</a>
+# <a href="https://access.redhat.com/solutions/68612">What is the vm.overcommit_memory parameter?</a>
 vm.overcommit_memory = N
 </pre>
 
@@ -801,18 +801,18 @@ in use. For advanced options like LVM striping multipath options, and
 VDO see the above listed Red Hat documentation.
 
 <pre>
-# <a href="https://access.redhat.com/solutions/5427">https://access.redhat.com/solutions/5427</a>
+# <a href="https://access.redhat.com/solutions/5427">What is the suggested I/O scheduler for RHEL with virtualization?</a>
 echo N > /sys/block/DEVICE/queue/scheduler
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/43861">https://access.redhat.com/solutions/43861</a>
+# <a href="https://access.redhat.com/solutions/43861">What is the kernel parameters related to maximum size of physical I/O requests?</a>
 # Should be aligned with optimal_io_size if reported
 echo N > /sys/block/DEVICE/queue/max_sectors_kb
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/4378581">https://access.redhat.com/solutions/4378581</a>
+# <a href="https://access.redhat.com/solutions/4378581">How to set the read_ahead_kb value persistently?</a>
 # Can be up to max_sectors_kb
 echo N > /sys/block/DEVICE/queue/read_ahead_kb
 </pre>
@@ -821,18 +821,18 @@ echo N > /sys/block/DEVICE/queue/read_ahead_kb
 
 <pre>
 # For lots of small files test smaller block size
-# <a href="https://access.redhat.com/solutions/37930">https://access.redhat.com/solutions/37930</a>
-# <a href="https://access.redhat.com/solutions/1614393">https://access.redhat.com/solutions/1614393</a>
-# <a href="https://access.redhat.com/solutions/3202781">https://access.redhat.com/solutions/3202781</a>
-# <a href="https://access.redhat.com/solutions/70522">https://access.redhat.com/solutions/70522</a>
+# <a href="https://access.redhat.com/solutions/37930">Filesystem with a blocksize larger than 4096?</a>
+# <a href="https://access.redhat.com/solutions/1614393">What is the maximum supported XFS block size in RHEL?</a>
+# <a href="https://access.redhat.com/solutions/3202781">How to create XFS filesystem with 512 bytes block size?</a>
+# <a href="https://access.redhat.com/solutions/70522">What is the maximum block size of the ext4 filesystem in RHEL?</a>
 mkfs.xfs -b size=1024 /dev/sdX1
 mkfs.ext4 -b 1024 /dev/sdX1
 </pre>
 
 <pre>
 # Avoid excessive reserved space with huge ext4 partitions
-# <a href="https://access.redhat.com/solutions/2076">https://access.redhat.com/solutions/2076</a>
-# <a href="https://access.redhat.com/solutions/1980673">https://access.redhat.com/solutions/1980673</a>
+# <a href="https://access.redhat.com/solutions/2076">df shows 5% less free space than is present on a fresh filesystem?</a>
+# <a href="https://access.redhat.com/solutions/1980673">Does XFS have reserved space for the root user?</a>
 mke2fs -j -m 2 /dev/sdX1
 tune2fs -m 2 /dev/sdX1
 </pre>
@@ -926,10 +926,10 @@ Network related documentation references:
 
 ### NIC and System-wide Network Configuration
 
-* https://access.redhat.com/solutions/21301
-* https://access.redhat.com/solutions/742043
-* https://access.redhat.com/solutions/2073223
-* https://access.redhat.com/solutions/419803
+* [RHEL network interface dropping packets](https://access.redhat.com/solutions/21301)
+* [Should I be concerned about a 0.05% packet drop rate?](https://access.redhat.com/solutions/742043)
+* [ifconfig and ip commands report packet drops?](https://access.redhat.com/solutions/2073223)
+* [What does each field of the "netstat -s" command mean?](https://access.redhat.com/solutions/419803)
 
 ```
 # Show NIC details and counters
@@ -951,12 +951,12 @@ pmrep network.interface<TAB>
 ### Jumbo Frames
 
 Consider Jumbo frames where suitable, see
-https://access.redhat.com/solutions/3643.
+[How to enable jumbo frames for network interfaces in RHEL?](https://access.redhat.com/solutions/3643).
 
 ### NIC Parameters
 
 <pre>
-# <a href="https://access.redhat.com/solutions/6381">https://access.redhat.com/solutions/6381</a>
+# <a href="https://access.redhat.com/solutions/6381">How do I modify txqueuelen of my NIC?</a>
 ip link set eth0 txqueuelen 2000
 ethtool -g eth0
 ethtool -G eth0 rx 4096
@@ -964,7 +964,7 @@ ethtool -G eth0 tx 4096
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/288433">https://access.redhat.com/solutions/288433</a>
+# <a href="https://access.redhat.com/solutions/288433">What do the offload parameters shown by ethtool -k mean?</a>
 ethtool -k eth0
 ethtool -K eth0 ...
 </pre>
@@ -985,26 +985,26 @@ ethtool -C eth0 adaptive-tx on
 ### Various Network Stack Parameters
 
 <pre>
-# <a href="https://access.redhat.com/solutions/85913">https://access.redhat.com/solutions/85913</a>
+# <a href="https://access.redhat.com/solutions/85913">What are the implications of changing socket buffer sizes?</a>
 net.core.rmem_max = 16777216
 net.core.wmem_max = 16777216
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/168483">https://access.redhat.com/solutions/168483</a>
+# <a href="https://access.redhat.com/solutions/168483">How do I tune RHEL for better TCP performance?</a>
 net.ipv4.tcp_rmem = 4096 87380 16777216
 net.ipv4.tcp_wmem = 4096 87380 16777216
 net.ipv4.udp_mem = 381519 508693 16777216
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/3713681">https://access.redhat.com/solutions/3713681</a>
+# <a href="https://access.redhat.com/solutions/3713681">How to configure TCP BBR congestion control algorithm?</a>
 net.core.default_qdisc = fq
 net.ipv4.tcp_congestion_control = bbr
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/168483">https://access.redhat.com/solutions/168483</a>
+# <a href="https://access.redhat.com/solutions/168483">How do I tune RHEL for better TCP performance?</a>
 net.ipv4.tcp_slow_start_after_idle = 0
 </pre>
 
@@ -1014,27 +1014,27 @@ net.ipv4.tcp_fastopen = 3
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/30453">https://access.redhat.com/solutions/30453</a>
+# <a href="https://access.redhat.com/solutions/30453">Kernel SYN flood messages explained</a>
 net.core.somaxconn = 4096
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/31043">https://access.redhat.com/solutions/31043</a>
+# <a href="https://access.redhat.com/solutions/31043">Possible values for tcp_retries2 and tcp_syn_retries</a>
 net.ipv4.tcp_syn_retries = 5
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/1241943">https://access.redhat.com/solutions/1241943</a>
+# <a href="https://access.redhat.com/solutions/1241943">How to tune net.core.netdev_max_backlog kernel tunable?</a>
 net.core.netdev_max_backlog = 1000
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/1241943">https://access.redhat.com/solutions/1241943</a>
+# <a href="https://access.redhat.com/solutions/1241943">How to tune net.core.netdev_budget kernel tunable?</a>
 net.core.netdev_budget = 600
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/3642462">https://access.redhat.com/solutions/3642462</a>
+# <a href="https://access.redhat.com/solutions/3642462">Is it safe to disable net.ipv4.tcp_timestamps?</a>
 net.ipv4.tcp_timestamps = 0
 </pre>
 
@@ -1047,7 +1047,7 @@ net.core.busy_poll = 50
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/4978771">https://access.redhat.com/solutions/4978771</a>
+# <a href="https://access.redhat.com/solutions/4978771">TCP F-RTO performance considerations</a>
 net.ipv4.tcp_frto = 0
 </pre>
 
