@@ -582,20 +582,22 @@ ipcs -a
 
 ### Huge Pages
 
-Transparent Huge Pages (THP) are enabled by default on RHEL and should
-provide a good starting point for most applications. Some memory heavy
-applications such as databases might benefit from static huge pages
-especially on very large memory systems.
+Transparent Huge Pages (THP) are enabled by default on RHEL and are
+usually helpful with most applications. However, some memory heavy
+applications such as databases often benefit from static huge pages
+especially on very large memory systems. Some applications (or at least
+certain application versions) have [higher CPU usage with
+THP](https://access.redhat.com/solutions/1265183).
 
-It is best to check the configuration recommendations of each
-application and then measure the results of different approaches.
-Depending on the use case and workload profile (e.g., latency or
-throughput sensitive) either THP, possibly customized khugepaged
-parameters, or static huge pages setup may yield the best performance.
-Exotic setups like NUMA node specific huge page configurations are
-rarely helpful. Note that some application vendors recommend disabling
-huge pages altogether; please refer to vendor documentation for the
-exact recommendations.
+Considering the above, it is best to check the configuration
+recommendations of each application and then measure the results of
+different approaches. Depending on the use case and workload profile
+(e.g., latency or throughput sensitive) either THP, possibly customized
+khugepaged parameters, or static huge pages setup may yield the best
+performance. Exotic setups like NUMA node specific huge page
+configurations are rarely helpful. Note that some application vendors
+recommend disabling huge pages altogether; please refer to vendor
+documentation for the exact recommendations.
 
 * [How can I configure hugepages in RHEL?](https://access.redhat.com/solutions/33613)
 * [How to use, monitor, and disable transparent hugepages in RHEL?](https://access.redhat.com/solutions/46111)
