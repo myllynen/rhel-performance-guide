@@ -51,7 +51,7 @@ For illustration in which areas different tools operate see
 https://www.brendangregg.com/Perf/linux_observability_tools.png.
 
 For a PCP primer see
-https://access.redhat.com/articles/2450251.
+[Introduction to storage performance analysis with PCP](https://access.redhat.com/articles/2450251).
 
 ## Process Monitoring
 
