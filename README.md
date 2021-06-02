@@ -1131,6 +1131,7 @@ iperf -V ...
 
 * [Systems Performance: Enterprise and the Cloud book](https://www.brendangregg.com/systems-performance-2nd-edition-book.html)
 * [Linux Performance page by Brendan Gregg](https://www.brendangregg.com/linuxperf.html)
+* [Visualizing performance in RHEL](https://www.redhat.com/en/blog/visualizing-performance-red-hat-enterprise-linux-84-web-console)
 * [RHEL Troubleshooting Guide](https://github.com/myllynen/rhel-troubleshooting-guide)
 * [RHEL documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/)
 * [Red Hat Knowledge Base](https://access.redhat.com/knowledgebase/)
