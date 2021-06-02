@@ -972,7 +972,7 @@ ethtool -K eth0 ...
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_tuning_and_optimization_guide/sect-virtualization_tuning_optimization_guide-networking-techniques#sect-Virtualization_Tuning_Optimization_Guide-Networking-Multi-queue_virtio-net">RHEL 7 documentation section</a>
+# <a href="https://access.redhat.com/solutions/4367191">How should I configure network interface IRQ channels?</a>
 ethtool -l eth0
 ethtool -L eth0 combined N
 </pre>
