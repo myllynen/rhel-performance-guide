@@ -355,7 +355,10 @@ Custom tuned profiles can be created if needed, see
 
 ### System-wide Configuration and CPU Related Kernel Parameters
 
-Many of the tuned profiles set these up properly for most cases.
+Many of the tuned profiles set these up properly for most cases. As
+stated above, do not apply any of these tunables blindly! Also note that
+the values are either RHEL or tuned defaults, not values that would work
+optimally everywhere!
 
 For larger applications refer to vendor documentation for exact
 recommendations and consider application parameter tuning as well.
@@ -391,7 +394,6 @@ x86_energy_perf_policy -r
 kernel.sched_wakeup_granularity_ns = N
 kernel.sched_min_granularity_ns = N
 kernel.sched_migration_cost_ns = N
-kernel.sched_autogroup_enabled = 1
 </pre>
 
 <pre>
@@ -676,7 +678,10 @@ details on CPU affinity and static NUMA bindings.
 
 See the above sections about IPC, THP, and NUMA related parameters.
 
-Many of the tuned profiles set these up properly for most cases.
+Many of the tuned profiles set these up properly for most cases. As
+stated above, do not apply any of these tunables blindly! Also note that
+the values are either RHEL or tuned defaults, not values that would work
+optimally everywhere!
 
 Do NOT change any of these parameters without testing and understanding
 their meaning, they might cause negative performance impact especially
