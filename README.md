@@ -1020,6 +1020,8 @@ stated above, do *not* apply any of these tunables blindly! Also note
 that many of the values shown below are either RHEL or tuned defaults,
 not values that would work optimally everywhere!
 
+If unsure let tuned to configure the relevant parameters.
+
 <pre>
 # <a href="https://access.redhat.com/solutions/85913">What are the implications of changing socket buffer sizes?</a>
 net.core.rmem_max = 16777216
@@ -1033,6 +1035,7 @@ net.ipv4.tcp_wmem = 4096 87380 16777216
 </pre>
 
 <pre>
+# These should not be changed for company-internal networks
 # <a href="https://access.redhat.com/solutions/3713681">How to configure TCP BBR congestion control algorithm?</a>
 # <a href="https://www.bufferbloat.net/projects/codel/wiki/">https://www.bufferbloat.net/projects/codel/wiki/</a>
 net.core.default_qdisc = fq_codel
@@ -1092,9 +1095,7 @@ net.ipv4.tcp_timestamps = 0
 net.ipv4.ip_local_port_range = 12288 65535
 net.ipv4.tcp_max_syn_backlog = 8192
 net.ipv4.tcp_abort_on_overflow = 1
-net.ipv4.tcp_no_metrics_save = 1
 net.ipv4.tcp_mtu_probing = 1
-net.ipv4.tcp_tw_reuse = 1
 net.ipv4.tcp_ecn = 1
 ```
 
