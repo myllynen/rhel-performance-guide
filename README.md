@@ -1092,6 +1092,8 @@ net.ipv4.tcp_timestamps = 0
 
 ```
 # Other considerations
+# Do NOT apply these blindly, these are for reference only,
+# to be evaluated and tested under particular workloads.
 net.ipv4.ip_local_port_range = 12288 65535
 net.ipv4.tcp_max_syn_backlog = 8192
 net.ipv4.tcp_abort_on_overflow = 1
