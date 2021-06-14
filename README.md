@@ -13,16 +13,17 @@ and tuning virtualization platforms are out of scope for this document.
 Specialized workloads such as HPC, NFV/VNF, or RT (high-performance
 computing, network function virtualization / virtualized network
 functions, real-time) are not the focus for this document but some
-aspects discussed here would be beneficial with those workloads as well.
+aspects discussed here might be beneficial with those workloads as well.
 
-The decision when to spend hours and days with performance tuning and
-monitoring instead of merely throwing more (virtual) hardware to the
-problem is left to the reader. Depending on the case either approach
-might turn out to be the more cost-effective one. However, some of the
-considerations and hints below might provide insight when and what kind
-of additional resources would be most beneficial in a particular
-situation. In general, right-sizing (virtual) hardware might be
-difficult without good understanding of the workload characteristics.
+The decision when to spend hours and days with low-level performance
+tuning and monitoring instead of merely throwing more (virtual) hardware
+to the problem is left to the reader. Depending on the case either
+approach might turn out to be the more cost-effective one. However, some
+of the considerations and hints below might provide insight when and
+what kind of additional resources would be most beneficial in a
+particular situation. In general, right-sizing (virtual) hardware might
+prove to be difficult without good understanding of the workload
+characteristics.
 
 Web based performance monitoring tools like [basic Cockpit
 setup](https://opensource.com/article/20/11/cockpit-server-management),
@@ -47,11 +48,28 @@ https://www.brendangregg.com/systems-performance-2nd-edition-book.html.
 For troubleshooting tips see
 https://github.com/myllynen/rhel-troubleshooting-guide.
 
-For illustration in which areas different tools operate see
+For an illustration in which areas different tools operate see
 https://www.brendangregg.com/Perf/linux_observability_tools.png.
 
 For a PCP primer see
 [Introduction to storage performance analysis with PCP](https://access.redhat.com/articles/2450251).
+
+## Warning
+
+There are *many* performance tunables listed below. They are listed here
+to provide a collection of references of occasionally relevant tunables.
+They are *not* all meant to be taken into use! Only when the default
+settings, most suitable tuned profile (see below), and application
+specific recommendations fail to provide appropriate level of
+performance, the below tunables could be considered to be tested.
+
+No tunable should be taken into use without understanding it effects and
+side-effects under different kinds of system loads and verifying its
+impact by rigorous testing. Before each tunable links explaining them
+are provided to help the reader to understand whether a tunable might be
+appropriate and helpful for a particular system.
+
+Do *not* blindly apply any tunable on production systems!
 
 ## Process Monitoring
 
