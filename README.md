@@ -1067,21 +1067,23 @@ net.core.netdev_budget = 600
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/3642462">Is it safe to disable net.ipv4.tcp_timestamps?</a>
-net.ipv4.tcp_timestamps = 0
-</pre>
-
-<pre>
+# Consider these only with supporting applications
 # <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/performance_tuning_guide/sect-red_hat_enterprise_linux-performance_tuning_guide-networking-configuration_tools#sect-Red_Hat_Enterprise_Linux-Performance_Tuning_Guide-Configuration_tools-Configuring_interrupt_queues">RHEL 7 documentation section</a>
 # <a href="https://www.kernel.org/doc/Documentation/sysctl/net.txt">https://www.kernel.org/doc/Documentation/sysctl/net.txt</a>
 ethtool -k eth0 | grep busy
-net.core.busy_read = 50
-net.core.busy_poll = 50
+net.core.busy_read = N
+net.core.busy_poll = N
 </pre>
 
 <pre>
 # <a href="https://access.redhat.com/solutions/4978771">TCP F-RTO performance considerations</a>
 net.ipv4.tcp_frto = 0
+</pre>
+
+<pre>
+# Consider this only behind SNAT
+# <a href="https://access.redhat.com/solutions/3642462">Is it safe to disable net.ipv4.tcp_timestamps?</a>
+net.ipv4.tcp_timestamps = 0
 </pre>
 
 ```
