@@ -98,7 +98,7 @@ systemd-cgtop -d 2
 # Report vmstat -w like statistics using MBs
 pmrep -b MB -t 2 :vmstat-w
 # Report system overall process state statistics
-pmrep -gp -t 2 :proc-os-stats
+pmrep -g -p -t 2 :proc-os-stats
 ```
 
 ### Basic Process Information
@@ -142,6 +142,7 @@ watch -d=cumu -n 2 \
 # Details of selected processes
 pidstat -h -d -r -u -w -C '.*PROCNAME.*' 2
 # Alternative way to monitor process details
+# Plain PROCNAME enough since pcp-5.3.1
 pmrep -gp -t 2 -i '.*PROCNAME.*' :proc-info :proc-essential
 ```
 
@@ -371,18 +372,18 @@ psi=1
 echo performance > /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 </pre>
 
-```
+<pre>
 # Show processor power related values set by tuned profiles
-# cpupower is provided by the kernel-tools package
+# <a href="https://www.mankier.com/1/cpupower">cpupower(1)</a> is provided by the kernel-tools package
 cpupower frequency-info
 cpupower idle-info
-```
+</pre>
 
-```
+<pre>
 # Show processor performance bias value set by tuned profiles
-# x86_energy_perf_policy is provided by the kernel-tools package
+# <a href="https://www.mankier.com/8/x86_energy_perf_policy">x86_energy_perf_policy(8)</a> is provided by the kernel-tools package
 x86_energy_perf_policy -r
-```
+</pre>
 
 <pre>
 # Kernel scheduler related sysctl parameters set by tuned profiles
