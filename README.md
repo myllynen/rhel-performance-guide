@@ -98,7 +98,7 @@ systemd-cgtop -d 2
 # Report vmstat -w like statistics using MBs
 pmrep -b MB -t 2 :vmstat-w
 # Report system overall process state statistics
-pmrep -g -p -t 2 :proc-os-stats
+pmrep -gp -t 2 :proc-os-stats
 ```
 
 ### Basic Process Information
