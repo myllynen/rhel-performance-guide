@@ -605,8 +605,8 @@ ipcs -a
 Transparent Huge Pages (THP) are enabled by default on RHEL and are
 usually helpful with most applications. However, some memory heavy
 applications such as databases often benefit from static huge pages
-especially on very large memory systems. Some applications (or at least
-certain application versions) have [higher CPU usage with
+especially on very large memory systems. Some applications (or certain
+application versions) even have [higher CPU usage with
 THP](https://access.redhat.com/solutions/1265183).
 
 Considering the above, it is best to check the configuration
