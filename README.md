@@ -1034,8 +1034,9 @@ net.ipv4.tcp_wmem = 4096 87380 16777216
 
 <pre>
 # <a href="https://access.redhat.com/solutions/3713681">How to configure TCP BBR congestion control algorithm?</a>
-net.core.default_qdisc = fq
-net.ipv4.tcp_congestion_control = bbr
+# <a href="https://www.bufferbloat.net/projects/codel/wiki/">https://www.bufferbloat.net/projects/codel/wiki/</a>
+net.core.default_qdisc = fq_codel
+net.ipv4.tcp_congestion_control = cubic
 </pre>
 
 <pre>
@@ -1049,18 +1050,15 @@ net.ipv4.tcp_fastopen = 3
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/30453">Kernel SYN flood messages explained</a>
-net.core.somaxconn = 4096
-</pre>
-
-<pre>
 # <a href="https://access.redhat.com/solutions/31043">Possible values for tcp_retries2 and tcp_syn_retries</a>
 net.ipv4.tcp_syn_retries = 5
 </pre>
 
 <pre>
 # <a href="https://access.redhat.com/solutions/1241943">How to tune net.core.netdev_max_backlog kernel tunable?</a>
+# <a href="https://access.redhat.com/solutions/30453">Kernel SYN flood messages explained</a>
 net.core.netdev_max_backlog = 1000
+net.core.somaxconn = 4096
 </pre>
 
 <pre>
