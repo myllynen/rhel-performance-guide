@@ -1076,6 +1076,7 @@ net.core.busy_poll = N
 </pre>
 
 <pre>
+# Consider this only over wireless links
 # <a href="https://access.redhat.com/solutions/4978771">TCP F-RTO performance considerations</a>
 net.ipv4.tcp_frto = 0
 </pre>
