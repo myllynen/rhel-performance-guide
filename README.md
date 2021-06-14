@@ -996,7 +996,6 @@ net.core.wmem_max = 16777216
 # <a href="https://access.redhat.com/solutions/168483">How do I tune RHEL for better TCP performance?</a>
 net.ipv4.tcp_rmem = 4096 87380 16777216
 net.ipv4.tcp_wmem = 4096 87380 16777216
-net.ipv4.udp_mem = 381519 508693 16777216
 </pre>
 
 <pre>
