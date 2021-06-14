@@ -357,8 +357,8 @@ Custom tuned profiles can be created if needed, see
 
 Many of the tuned profiles set these up properly for most cases. As
 stated above, do *not* apply any of these tunables blindly! Also note
-that the values shown below are either RHEL or tuned defaults, not
-values that would work optimally everywhere!
+that many of the values shown below are either RHEL or tuned defaults,
+not values that would work optimally everywhere!
 
 For larger applications refer to vendor documentation for exact
 recommendations and consider application parameter tuning as well.
@@ -680,8 +680,8 @@ See the above sections about IPC, THP, and NUMA related parameters.
 
 Many of the tuned profiles set these up properly for most cases. As
 stated above, do *not* apply any of these tunables blindly! Also note
-that the values shown below are either RHEL or tuned defaults, not
-values that would work optimally everywhere!
+that many of the values shown below are either RHEL or tuned defaults,
+not values that would work optimally everywhere!
 
 Do NOT change any of these parameters without testing and understanding
 their meaning, they might cause negative performance impact especially
@@ -704,7 +704,7 @@ vm.vfs_cache_pressure = N
 
 <pre>
 # <a href="https://access.redhat.com/solutions/2209921">What is kernel parameter vm.zone_reclaim_mode?</a>
-vm.zone_reclaim_mode = 1
+vm.zone_reclaim_mode = N
 </pre>
 
 <pre>
@@ -873,7 +873,10 @@ findmnt | grep -v atime
 
 ### Kernel VM IO Related Parameters
 
-tuned profiles set these up properly for most cases.
+Many of the tuned profiles set these up properly for most cases. As
+stated above, do *not* apply any of these tunables blindly! Also note
+that many of the values shown below are either RHEL or tuned defaults,
+not values that would work optimally everywhere!
 
 <pre>
 # <a href="https://www.kernel.org/doc/Documentation/sysctl/vm.txt">https://www.kernel.org/doc/Documentation/sysctl/vm.txt</a>
