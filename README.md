@@ -59,9 +59,10 @@ For a PCP primer see
 There are *many* performance tunables listed below. They are listed here
 to provide a collection of references of occasionally relevant tunables.
 They are *not* all meant to be taken into use! Only when the default
-settings, most suitable tuned profile (see below), and application
+settings, the most suitable tuned profile (see below), and application
 specific recommendations fail to provide appropriate level of
-performance, the below tunables could be considered to be tested.
+performance, the below tunables could be considered to be evaluated and
+tested.
 
 No tunable should be taken into use without understanding it effects and
 side-effects under different kinds of system loads and verifying its
@@ -69,7 +70,8 @@ impact by rigorous testing. Before each tunable links explaining them
 are provided to help the reader to understand whether a tunable might be
 appropriate and helpful for a particular system.
 
-Do *not* blindly apply any tunable on production systems!
+Do *not* blindly apply any tunable on production systems without fully
+understand what it is about!
 
 ## Process Monitoring
 
