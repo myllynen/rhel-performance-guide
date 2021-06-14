@@ -983,6 +983,11 @@ Consider Jumbo frames where suitable, see
 
 ### NIC Parameters
 
+Many of the tuned profiles set these up properly for most cases. As
+stated above, do *not* apply any of these tunables blindly! Also note
+that many of the values shown below are either RHEL or tuned defaults,
+not values that would work optimally everywhere!
+
 <pre>
 # <a href="https://access.redhat.com/solutions/6381">How do I modify txqueuelen of my NIC?</a>
 ip link set eth0 txqueuelen 2000
