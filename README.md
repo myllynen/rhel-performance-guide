@@ -71,7 +71,7 @@ provided to help the reader to understand whether a tunable might be
 appropriate and helpful for a particular system and workload.
 
 Do *not* blindly apply any tunable on production systems without fully
-understand what it is about!
+understanding what it is about!
 
 ## Process Monitoring
 
