@@ -66,9 +66,9 @@ tested.
 
 No tunable should be taken into use without understanding it effects and
 side-effects under different kinds of loads and verifying its impact by
-rigorous testing. Before each tunable links explaining them are provided
-to help the reader to understand whether a tunable might be appropriate
-and helpful for a particular system.
+rigorous testing. Before each tunable links explaining their purpose are
+provided to help the reader to understand whether a tunable might be
+appropriate and helpful for a particular system.
 
 Do *not* blindly apply any tunable on production systems without fully
 understand what it is about!
