@@ -983,10 +983,8 @@ Consider Jumbo frames where suitable, see
 
 ### NIC Parameters
 
-Many of the tuned profiles set these up properly for most cases. As
-stated above, do *not* apply any of these tunables blindly! Also note
-that many of the values shown below are either RHEL or tuned defaults,
-not values that would work optimally everywhere!
+As stated above, do *not* apply any of these tunables blindly! See the
+referenced articles for explanation of these parameters and values.
 
 <pre>
 # <a href="https://access.redhat.com/solutions/6381">How do I modify txqueuelen of my NIC?</a>
@@ -1016,6 +1014,11 @@ ethtool -C eth0 adaptive-tx on
 </pre>
 
 ### Various Network Stack Parameters
+
+Many of the tuned profiles set these up properly for most cases. As
+stated above, do *not* apply any of these tunables blindly! Also note
+that many of the values shown below are either RHEL or tuned defaults,
+not values that would work optimally everywhere!
 
 <pre>
 # <a href="https://access.redhat.com/solutions/85913">What are the implications of changing socket buffer sizes?</a>
