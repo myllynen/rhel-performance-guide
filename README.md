@@ -615,9 +615,9 @@ THP](https://access.redhat.com/solutions/1265183).
 Considering the above, it is best to check the configuration
 recommendations of each application and then measure the results of
 different approaches. Depending on the use case and workload profile
-(e.g., latency or throughput sensitive) either THP, possibly customized
-khugepaged parameters, or static huge pages setup may yield the best
-performance. Exotic setups like NUMA node specific huge page
+(e.g., latency or throughput sensitive) either the default THP, possibly
+customized khugepaged parameters, or static huge pages setup may yield
+the best performance. Exotic setups like NUMA node specific huge page
 configurations are rarely helpful. Note that some application vendors
 recommend disabling huge pages altogether; please refer to vendor
 documentation for the exact recommendations.
