@@ -638,7 +638,7 @@ grep -H Huge /sys/devices/system/node/node*/meminfo
 grep -H . /sys/kernel/mm/transparent_hugepage/*
 # Show current khugepaged configuration
 grep -H . /sys/kernel/mm/transparent_hugepage/khugepaged/*
-# Show current group ID (gid) allowed to use shared memory for huge pages
+# Show current group ID (gid) allowed to use huge pages via shared memory segment
 cat /proc/sys/vm/hugetlb_shm_group
 ```
 
