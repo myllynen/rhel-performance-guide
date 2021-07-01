@@ -630,12 +630,16 @@ documentation for the exact recommendations.
 * https://alexandrnikitin.github.io/blog/transparent-hugepages-measuring-the-performance-impact/
 
 ```
-# Show current Huge Page statistics
+# Show current huge hage statistics
 grep Huge /proc/meminfo
+# Show current per-NUMA-node huge page statistics
+grep -H Huge /sys/devices/system/node/node*/meminfo
 # Show current THP configuration
 grep -H . /sys/kernel/mm/transparent_hugepage/*
 # Show current khugepaged configuration
 grep -H . /sys/kernel/mm/transparent_hugepage/khugepaged/*
+# Show current group ID (gid) allowed to use shared memory for huge pages
+cat /proc/sys/vm/hugetlb_shm_group
 ```
 
 ### NUMA
