@@ -3,11 +3,11 @@
 @import "{{ site.theme }}";
 
 nav ul {
-  height: 60vh;
+  height: 50vh;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  ::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none;
   }
 }
