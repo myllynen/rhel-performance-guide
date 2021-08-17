@@ -1,16 +1,13 @@
 ---
 ---
 @import "{{ site.theme }}";
+
 nav ul {
   height: 60vh;
   overflow-y: scroll;
-}
-
-/* Hide scrollbar */
-nav ul::-webkit-scrollbar {
-  display: none; /* Chrome, Safari and Opera */
-}
-nav ul {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
