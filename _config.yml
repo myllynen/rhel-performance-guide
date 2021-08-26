@@ -14,6 +14,6 @@ remote_theme: rundocs/jekyll-rtd-theme
 #  enabled:     true
 #  collections: false
 
-exclude:
-  - Gemfile
-  - Gemfile.lock
+#exclude:
+#  - Gemfile
+#  - Gemfile.lock
