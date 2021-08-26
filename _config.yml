@@ -1,18 +1,9 @@
 title: RHEL Performance Guide
 description: A complete guide to RHEL performance tuning and monitoring
-
 remote_theme: rundocs/jekyll-rtd-theme
-
-#plugins:
-#  - jekyll-relative-links
-
-readme_index:
-  with_frontmatter: true
-
-#relative_links:
-#  enabled:     true
-#  collections: false
-
-#exclude:
-#  - Gemfile
-#  - Gemfile.lock
+defaults:
+  -
+    scope:
+      path: "README.md"
+    values:
+      permalink: "index.html"
