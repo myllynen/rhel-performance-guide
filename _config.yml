@@ -1,6 +1,15 @@
-theme: jekyll-theme-leap-day
+remote_theme: rundocs/jekyll-rtd-theme
+
 plugins:
   - jekyll-relative-links
+
+readme_index:
+  with_frontmatter: true
+
 relative_links:
   enabled:     true
   collections: false
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
