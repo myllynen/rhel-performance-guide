@@ -43,13 +43,13 @@ Although exact understanding of technologies like
 is not mandatory it might be helpful in many cases.
 
 For a complete book on system performance see
-https://www.brendangregg.com/systems-performance-2nd-edition-book.html.
+[https://www.brendangregg.com/systems-performance-2nd-edition-book.html](https://www.brendangregg.com/systems-performance-2nd-edition-book.html).
 
 For troubleshooting tips see
-https://github.com/myllynen/rhel-troubleshooting-guide.
+[https://github.com/myllynen/rhel-troubleshooting-guide](https://github.com/myllynen/rhel-troubleshooting-guide).
 
 For an illustration in which areas different tools operate see
-https://www.brendangregg.com/Perf/linux_observability_tools.png.
+[https://www.brendangregg.com/Perf/linux_observability_tools.png](https://www.brendangregg.com/Perf/linux_observability_tools.png).
 
 For a PCP primer see
 [Introduction to storage performance analysis with PCP](https://access.redhat.com/articles/2450251).
@@ -564,15 +564,15 @@ remain long used after a memory pressure situation.
 See the following articles for more discussion on swap:
 
 * [What is the recommended swap size for Red Hat platforms?](https://access.redhat.com/solutions/15244)
-* https://chrisdown.name/2018/01/02/in-defence-of-swap.html
-* https://www.redhat.com/en/blog/do-we-really-need-swap-modern-systems
+* [https://chrisdown.name/2018/01/02/in-defence-of-swap.html](https://chrisdown.name/2018/01/02/in-defence-of-swap.html)
+* [https://www.redhat.com/en/blog/do-we-really-need-swap-modern-systems](https://www.redhat.com/en/blog/do-we-really-need-swap-modern-systems)
 
 In case the system runs out of memory the dreaded OOM-killer will act
 (the per-process oom related tunables are described in the second link):
 
 * [How does the OOM-Killer select a task to kill?](https://access.redhat.com/solutions/66458)
-* https://www.kernel.org/doc/Documentation/filesystems/proc.txt
-* https://man7.org/linux/man-pages/man8/systemd-oomd.service.8.html
+* [https://www.kernel.org/doc/Documentation/filesystems/proc.txt](https://www.kernel.org/doc/Documentation/filesystems/proc.txt)
+* [https://man7.org/linux/man-pages/man8/systemd-oomd.service.8.html](https://www.kernel.org/doc/Documentation/filesystems/proc.txt)
 
 ```
 # Show current memory layout
@@ -593,7 +593,7 @@ their exact requirements.
 * [What are the kernel parameters for IPC?](https://access.redhat.com/solutions/20519)
 * [What are the kernel parameters available for System V IPC tuning?](https://access.redhat.com/solutions/431633)
 * [Changing the semaphore value fails with large values](https://access.redhat.com/solutions/4968021)
-* https://www.kernel.org/doc/Documentation/sysctl/kernel.txt
+* [https://www.kernel.org/doc/Documentation/sysctl/kernel.txt](https://www.kernel.org/doc/Documentation/sysctl/kernel.txt)
 
 ```
 # Show current System V IPC kernel parameters
@@ -626,8 +626,8 @@ documentation for the exact recommendations.
 * [How to use, monitor, and disable transparent hugepages in RHEL?](https://access.redhat.com/solutions/46111)
 * [How do I check for hugepages usage and what is using it?](https://access.redhat.com/solutions/320303)
 * [Examining Huge Pages or Transparent Huge Pages performance](https://access.redhat.com/articles/781653)
-* https://www.kernel.org/doc/Documentation/vm/hugetlbpage.txt
-* https://alexandrnikitin.github.io/blog/transparent-hugepages-measuring-the-performance-impact/
+* [https://www.kernel.org/doc/Documentation/vm/hugetlbpage.txt](https://www.kernel.org/doc/Documentation/vm/hugetlbpage.txt)
+* [https://alexandrnikitin.github.io/blog/transparent-hugepages-measuring-the-performance-impact/](https://alexandrnikitin.github.io/blog/transparent-hugepages-measuring-the-performance-impact/)
 
 ```
 # Show current huge hage statistics
@@ -676,7 +676,7 @@ balancing, this should be considered only for very specific workloads
 [numactl(8)](https://man7.org/linux/man-pages/man8/numactl.8.html) for
 details on CPU affinity and static NUMA bindings.
 
-* https://www.redhat.com/en/blog/mysteries-numa-memory-management-revealed
+* [https://www.redhat.com/en/blog/mysteries-numa-memory-management-revealed](https://www.redhat.com/en/blog/mysteries-numa-memory-management-revealed)
 
 ### Memory Related Kernel Parameters
 
