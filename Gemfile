@@ -1,3 +1,5 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'jekyll-relative-links'
+gem "jekyll-rtd-theme"
+
+gem "github-pages", group: :jekyll_plugins
