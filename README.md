@@ -2,9 +2,8 @@
 ---
 # RHEL Performance Guide
 
-GitHub repo [https://github.com/myllynen/rhel-performance-guide](https://github.com/myllynen/rhel-performance-guide).
-
-Themed page [https://myllynen.github.io/rhel-performance-guide/](https://myllynen.github.io/rhel-performance-guide/).
+GitHub repo [https://github.com/myllynen/rhel-performance-guide](https://github.com/myllynen/rhel-performance-guide).  
+Themed page [https://myllynen.github.io/rhel-performance-guide](https://myllynen.github.io/rhel-performance-guide).
 
 ## Introduction
 
