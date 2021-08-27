@@ -58,7 +58,7 @@ For an illustration in which areas different tools operate see
 
 For a PCP primer see
 [Introduction to storage performance analysis with PCP](https://access.redhat.com/articles/2450251).
-For PCP setup instructions, see RHEL
+For PCP setup instructions, see
 [RHEL Performance guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/index),
 chapters
 [6](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/setting-up-pcp_monitoring-and-managing-system-status-and-performance),
