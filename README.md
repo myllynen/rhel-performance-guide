@@ -26,9 +26,10 @@ to the problem is left to the reader. Depending on the case either
 approach might turn out to be the more cost-effective one. However, some
 of the considerations and hints below might provide insight when and
 what kind of additional resources would be most beneficial in a
-particular situation. In general, right-sizing (virtual) hardware might
-prove to be difficult without good understanding of the workload
-characteristics.
+particular situation. In general,
+[right-sizing](https://www.redhat.com/en/blog/optimize-public-cloud-workloads-rhel-red-hat-insights-resource-optimization)
+(virtual) hardware or cloud instances might prove to be difficult
+without good understanding of the workload characteristics.
 
 Web based performance monitoring tools like [basic Cockpit
 setup](https://opensource.com/article/20/11/cockpit-server-management),
