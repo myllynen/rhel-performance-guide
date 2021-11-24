@@ -157,9 +157,9 @@ watch -d=cumu -n 2 \
   "ps -q PID1,PID2 axwwo user,pid,ppid,psr,%cpu,%mem,vsz,rss,wchan:21,stat,start,cputime,args"
 # Details of selected processes
 pidstat -h -d -r -u -w -C '.*PROCNAME.*' 2
-# Alternative way to monitor process details
-# Plain PROCNAME enough since pcp-5.3.1
-pmrep -gp -t 2 -i '.*PROCNAME.*' :proc-info :proc-essential
+# Alternative way to monitor process details,
+# use PID or regexp to match a particular process
+pmrep -gp -t 2 -i PROCNAME :proc-info :proc-essential
 ```
 
 ### Process CPU Usage Related Information
@@ -203,11 +203,10 @@ strace -CfttTy -e trace=%file,%desc -p PID
 
 ```
 # Report 5 most network using processes
-# Requires PCP BCC PMDA netproc module installed (pcp-5.2.3)
+# Requires PCP BCC PMDA netproc module installed
 pmrep -1gU -t 2 -J 5 proc.hog.net
 # Process network usage statistics
-# Requires PCP BCC PMDA netproc module installed (pcp-5.2.3)
-# Requires default pmrep.conf update for netproc (pcp-5.3.0)
+# Requires PCP BCC PMDA netproc module installed
 pmrep -gp -t 2 -i '.*PROCNAME.*' :proc-net :proc-net-ext
 # Trace network related system calls
 strace -CfttTy -e trace=%network -p PID
@@ -1169,11 +1168,10 @@ _tcp*_ commands from the _bcc-tools_ package.
 lsof -VP -r 2 -i :PORT
 lsof -VanPi -r 2 -p PID
 # Report 5 most network using processes
-# Requires PCP BCC PMDA netproc module installed (pcp-5.2.3)
+# Requires PCP BCC PMDA netproc module installed
 pmrep -1gU -t 2 -J 5 proc.hog.net
 # Process network usage statistics
-# Requires PCP BCC PMDA netproc module installed (pcp-5.2.3)
-# Requires default pmrep.conf update for netproc (pcp-5.3.0)
+# Requires PCP BCC PMDA netproc module installed
 pmrep -gp -t 2 -i '.*PROCNAME.*' :proc-net :proc-net-ext
 # Dump network traffic
 tcpdump -nnv -i any port 80 or port 443
