@@ -7,8 +7,8 @@ Themed page: [https://myllynen.github.io/rhel-performance-guide](https://myllyne
 
 ## Introduction
 
-This page provides a compact and to-the-point [Red Hat Enterprise Linux
-(RHEL)](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux)
+This page provides a compact and to-the-point
+[Red Hat Enterprise Linux (RHEL)](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux)
 CPU, memory, IO, and network performance guide covering most relevant
 tuning parameters and monitoring commands and tools. Diagnosing and
 monitoring individual processes is also covered.
@@ -31,14 +31,13 @@ particular situation. In general,
 (virtual) hardware or cloud instances might prove to be difficult
 without good understanding of the workload characteristics.
 
-Web based performance monitoring tools like [basic Cockpit
-setup](https://opensource.com/article/20/11/cockpit-server-management),
-system performance visualization with [PCP](https://pcp.io/) (see [part
-1](https://www.redhat.com/en/blog/visualizing-system-performance-rhel-8-using-performance-co-pilot-pcp-and-grafana-part-1),
-[part
-2](https://www.redhat.com/en/blog/visualizing-system-performance-rhel-8-using-performance-co-pilot-pcp-and-grafana-part-2),
-and [part
-3](https://www.redhat.com/en/blog/visualizing-system-performance-rhel-8-part-3-kernel-metric-graphing-performance-co-pilot-grafana-and-bpftrace)),
+Web based performance monitoring tools like
+[basic Cockpit setup](https://opensource.com/article/20/11/cockpit-server-management),
+system performance visualization with [PCP](https://pcp.io/) (see
+[part 1](https://www.redhat.com/en/blog/visualizing-system-performance-rhel-8-using-performance-co-pilot-pcp-and-grafana-part-1),
+[part 2](https://www.redhat.com/en/blog/visualizing-system-performance-rhel-8-using-performance-co-pilot-pcp-and-grafana-part-2),
+and
+[part 3](https://www.redhat.com/en/blog/visualizing-system-performance-rhel-8-part-3-kernel-metric-graphing-performance-co-pilot-grafana-and-bpftrace)),
 and [Prometheus](https://prometheus.io/) are often extremely helpful and
 should be considered especially in larger environments.
 
@@ -68,7 +67,6 @@ chapters
 [10](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/setting-up-graphical-representation-of-pcp-metrics_monitoring-and-managing-system-status-and-performance),
 and
 [5](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/monitoring-performance-using-rhel-system-roles_monitoring-and-managing-system-status-and-performance).
-
 
 ## Warning
 
@@ -625,8 +623,8 @@ Transparent Huge Pages (THP) are enabled by default on RHEL and are
 usually helpful with most applications. However, some memory heavy
 applications such as databases often benefit from static huge pages
 especially on very large memory systems. Some applications (or certain
-application versions) even have [higher CPU usage with
-THP](https://access.redhat.com/solutions/1265183).
+application versions) even have
+[higher CPU usage with THP](https://access.redhat.com/solutions/1265183).
 
 Considering the above, it is best to check the configuration
 recommendations of each application and then measure the results of
