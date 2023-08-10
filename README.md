@@ -403,14 +403,6 @@ x86_energy_perf_policy -r
 </pre>
 
 <pre>
-# Kernel scheduler related sysctl parameters set by tuned profiles
-# <a href="https://access.redhat.com/solutions/177953">About use of kernel parameter 'sched_*'</a>
-kernel.sched_wakeup_granularity_ns = N
-kernel.sched_min_granularity_ns = N
-kernel.sched_migration_cost_ns = N
-</pre>
-
-<pre>
 # Latency-sensitive workloads might benefit from
 # system partitioning and dynamic tickless behavior
 # <a href="https://access.redhat.com/articles/3720611">Discussion of isolcpus=, nohz_full= and rcu_nocbs= kernel parameters</a>
