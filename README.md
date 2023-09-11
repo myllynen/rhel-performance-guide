@@ -956,6 +956,7 @@ Network related documentation references:
 * [RHEL Configuring and managing networking guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/index)
 * [RHEL Configuring RHEL to optimize access to network resources guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/configuring-rhel-to-optimize-access-to-network-resources_monitoring-and-managing-system-status-and-performance)
 * [Illustrated Guide to Monitoring and Tuning the Linux Networking Stack blog post](https://blog.packagecloud.io/eng/2016/10/11/monitoring-tuning-linux-networking-stack-receiving-data-illustrated/)
+* [Linux network performance parameters page by Leandro Moreira](https://github.com/leandromoreira/linux-network-performance-parameters)
 * [Monitoring and Tuning the Linux Networking Stack blog post](https://blog.packagecloud.io/eng/2016/06/22/monitoring-tuning-linux-networking-stack-receiving-data/)
 * [Linux kernel IP sysctl documentation](https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt)
 * [Linux kernel network scaling documentation](https://www.kernel.org/doc/Documentation/networking/scaling.txt)
