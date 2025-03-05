@@ -18,15 +18,15 @@ and tuning virtualization platforms are out of scope for this document.
 Specialized workloads such as HPC, NFV/VNF, or RT (high-performance
 computing, network function virtualization / virtualized network
 functions, real-time) are not the focus for this document but some
-aspects discussed here might be beneficial with those workloads as well.
+aspects discussed here might be beneficial with such workloads as well.
 
 The decision when to spend hours and days with low-level performance
-tuning and monitoring instead of merely throwing more (virtual) hardware
-to the problem is left to the reader. Depending on the case either
-approach might turn out to be the more cost-effective one. However, some
-of the considerations and hints below might provide insight when and
-what kind of additional resources would be most beneficial in a
-particular situation. In general,
+tuning and monitoring instead of merely throwing more (virtual)
+hardware to the problem is left to the reader. Depending on the case
+either approach might turn out to be the more cost-effective one.
+However, some of the considerations and hints below might provide
+insight when and what kind of additional resources would be most
+beneficial in a particular situation. In general,
 [right-sizing](https://www.redhat.com/en/blog/optimize-public-cloud-workloads-rhel-red-hat-insights-resource-optimization)
 (virtual) hardware or cloud instances might prove to be difficult
 without good understanding of the workload characteristics.
@@ -38,8 +38,8 @@ system performance visualization with [PCP](https://pcp.io/) (see
 [part 2](https://www.redhat.com/en/blog/visualizing-system-performance-rhel-8-using-performance-co-pilot-pcp-and-grafana-part-2),
 and
 [part 3](https://www.redhat.com/en/blog/visualizing-system-performance-rhel-8-part-3-kernel-metric-graphing-performance-co-pilot-grafana-and-bpftrace)),
-and [Prometheus](https://prometheus.io/) are often extremely helpful and
-should be considered especially in larger environments.
+and [Prometheus](https://prometheus.io/) are often extremely helpful
+and should be considered especially in larger environments.
 
 The reader is expected to be familiar with basic operating system
 concepts and terms and understand the output of the example commands.
@@ -59,30 +59,37 @@ For an illustration in which areas different tools operate see
 For a PCP primer see
 [Introduction to storage performance analysis with PCP](https://access.redhat.com/articles/2450251).
 For PCP setup instructions, see
-[RHEL Performance guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/index),
+[RHEL Performance guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/index),
 chapters
-[6](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/setting-up-pcp_monitoring-and-managing-system-status-and-performance),
-[7](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/logging-performance-data-with-pmlogger_monitoring-and-managing-system-status-and-performance),
-[8](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/monitoring-performance-with-performance-co-pilot_monitoring-and-managing-system-status-and-performance),
-[10](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/setting-up-graphical-representation-of-pcp-metrics_monitoring-and-managing-system-status-and-performance),
+[5](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/setting-up-pcp_monitoring-and-managing-system-status-and-performance),
+[6](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/logging-performance-data-with-pmlogger_monitoring-and-managing-system-status-and-performance),
+[7](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/monitoring-performance-with-performance-co-pilot_monitoring-and-managing-system-status-and-performance),
+[9](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/setting-up-graphical-representation-of-pcp-metrics_monitoring-and-managing-system-status-and-performance),
 and
-[5](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/monitoring-performance-using-rhel-system-roles_monitoring-and-managing-system-status-and-performance).
+[4](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/monitoring-performance-by-using-the-metrics-rhel-system-role_monitoring-and-managing-system-status-and-performance).
+
+The PCP commands below expect the pcp-system-tools package to be
+installed and the pmcd service running. The service does not do
+anything unless PCP tools are fetching for metrics so it is typically
+fine to enable it also on production systems. One of the notable
+benefits of PCP is that all the commands work both on live systems and
+with archived metrics as well.
 
 ## Warning
 
-There are *many* performance tunables listed below. They are listed here
-to provide a collection of references of occasionally relevant tunables.
-They are *not* all meant to be taken into use! Only when the default
-settings, the most suitable tuned profile (see below), and application
-specific recommendations fail to provide appropriate level of
-performance, the below tunables could be considered to be evaluated and
-tested.
+There are *many* performance tunables listed below. They are listed
+here to provide a collection of references of occasionally relevant
+tunables. They are *not* all meant to be taken into use! Only when the
+default settings, the most suitable tuned profile (see below), and
+application specific recommendations fail to provide appropriate level
+of performance, the below tunables could be considered to be evaluated
+and tested.
 
-No tunable should be taken into use without understanding it effects and
-side-effects under different kinds of loads and verifying its impact by
-rigorous testing. Before each tunable links explaining their purpose are
-provided to help the reader to understand whether a tunable might be
-appropriate and helpful for a particular system and workload.
+No tunable should be taken into use without understanding its effects
+and side-effects under different kinds of loads and verifying its
+impact by rigorous testing. Before each tunable links explaining their
+purpose are provided to help the reader to understand whether a tunable
+might be appropriate and helpful for a particular system and workload.
 
 Do *not* blindly apply any tunable on production systems without fully
 understanding what it is about!
@@ -91,8 +98,8 @@ understanding what it is about!
 
 Process monitoring related documentation references:
 
-* [RHEL Getting started with perf guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/getting-started-with-perf_monitoring-and-managing-system-status-and-performance)
-* [RHEL Getting started with flamegraphs guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/getting-started-with-flamegraphs_monitoring-and-managing-system-status-and-performance)
+* [RHEL Getting started with perf guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/getting-started-with-perf_monitoring-and-managing-system-status-and-performance)
+* [RHEL Getting started with flamegraphs guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/getting-started-with-flamegraphs_monitoring-and-managing-system-status-and-performance)
 * [Linux perf-top basics: understand the % blog post](https://blog.dbi-services.com/linux-perf-top-basics-understand-the/)
 * [Linux Performance page by Brendan Gregg](https://www.brendangregg.com/linuxperf.html)
 * [perf Examples page by Brendan Gregg](https://www.brendangregg.com/perf.html)
@@ -107,12 +114,12 @@ Basic commands to see the current status of the system:
 top
 pcp atop
 pcp htop
-vmstat -S m -w 2
 systemd-cgtop -d 2
-# Report vmstat -w like statistics using MBs
+# Report vmstat -w like statistics using PCP
+# This corresponds to: vmstat -S m -w 2
 pmrep -b MB -t 2 :vmstat-w
 # Report system overall process state statistics
-pmrep -g -p -t 2 :proc-os-stats
+pmrep -gp -t 2 :proc-os-stats
 ```
 
 ### Basic Process Information
@@ -133,8 +140,8 @@ causes less overhead than
 tool will introduce some overhead, perhaps using
 [cat(1)](https://man7.org/linux/man-pages/man1/cat.1.html) to print
 values from the
-[proc(5)](https://man7.org/linux/man-pages/man5/proc.5.html) files being
-the tool causing least overhead but often also being the last
+[proc(5)](https://man7.org/linux/man-pages/man5/proc.5.html) files
+being the tool causing least overhead but often also being the least
 user-friendly option.
 
 ```
@@ -144,7 +151,7 @@ user-friendly option.
 pstree -Aalp
 # Live view of processes
 # Use -p PID1 -p PID2 to monitor pid-1 and pid-2 only,
-# use 'f' to enter field management to enable field like
+# use 'f' to enter field management to enable fields like
 # number of threads, last used CPU, swapped size, wchan,
 # use 'E'/'e' to change scale, 'u' to filter by user
 top
@@ -153,17 +160,19 @@ top
 # use -T and tid to display all threads of processes
 watch -d=cumu -n 2 \
   "ps -q PID1,PID2 axwwo user,pid,ppid,psr,%cpu,%mem,vsz,rss,wchan:21,stat,start,cputime,args"
-# Details of selected processes
+# Details of a selected process
 pidstat -h -d -r -u -w -C '.*PROCNAME.*' 2
+# Or the same reporting with PCP
+pmrep -t 2 -i PROCNAME :pidstat :pidstat-d :pidstat-r :pidstat-w
 # Alternative way to monitor process details,
-# use PID or regexp to match a particular process
+# can also use a list of PIDs or regexp to match processes
 pmrep -gp -t 2 -i PROCNAME :proc-info :proc-essential
 ```
 
 ### Process CPU Usage Related Information
 
 ```
-# Report 5 most CPU using processes
+# Report the 5 most CPU using processes
 pmrep -1gU -t 2 -J 5 proc.hog.cpu
 # Process CPU/scheduling statistics
 pmrep -gp -t 2 -i '.*PROCNAME.*' :proc-cpu :proc-cpu-ext
@@ -174,38 +183,38 @@ perf top -Kgnv -d 2 -e cycles:u -s cpu,pid,comm,dso,sym -p PID
 ### Process Memory Usage Related Information
 
 ```
-# Report 5 most memory using processes
+# Report the 5 most memory using processes
 pmrep -1gU -t 2 -J 5 proc.hog.mem
 # Process memory usage statistics
-pmrep -gp -t 2 -i '.*PROCNAME.*' :proc-mem :proc-mem-ext
+pmrep -gp -t 2 -i PROCNAME :proc-mem :proc-mem-ext
 # Show process per-NUMA-node memory statistics
 watch -d=cumu -n 2 numastat -p PID
-# Summary of memory related system calls
+# Summarize memory related system calls
 strace -fc -e trace=%memory COMMAND
 ```
 
 ### Process IO Usage Related Information
 
 ```
+# Report the 5 most IO using processes
+pmrep -1gU -t 2 -J 5 proc.hog.disk
 # Show IO activity for a process
 iotop -k -d 2 -p PID
-# Report 5 most IO using processes
-pmrep -1gU -t 2 -J 5 proc.hog.disk
 # Process IO statistics
-pmrep -gp -t 2 -i '.*PROCNAME.*' :proc-io :proc-io-ext
-# Trace file operations related system calls
+pmrep -gp -t 2 -i PROCNAME :proc-io :proc-io-ext
+# Trace and summarize file ops related system calls
 strace -CfttTy -e trace=%file,%desc -p PID
 ```
 
 ### Process Network Usage Related Information
 
 ```
-# Report 5 most network using processes
-# Requires PCP BCC PMDA netproc module installed
+# Report the 5 most network using processes
+# Requires PCP BPF PMDA netatop module installed
 pmrep -1gU -t 2 -J 5 proc.hog.net
 # Process network usage statistics
-# Requires PCP BCC PMDA netproc module installed
-pmrep -gp -t 2 -i '.*PROCNAME.*' :proc-net :proc-net-ext
+# Requires PCP BPF PMDA netatop module installed
+pmrep -gp -t 2 -i PROCNAME :proc-net :proc-net-ext
 # Trace network related system calls
 strace -CfttTy -e trace=%network -p PID
 ```
@@ -214,7 +223,7 @@ strace -CfttTy -e trace=%network -p PID
 
 ```
 # Show various summaries and details for a process
-pmrep -p -t 2 -i '.*PROCNAME.*' :proc<TAB>
+pmrep -p -t 2 -i PROCNAME :proc<TAB>
 ```
 
 ```
@@ -303,12 +312,12 @@ perf sched timehist -Mw --state | grep PROCNAME
 
 CPU related documentation references:
 
-* [RHEL Reviewing a system using tuna interface guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/reviewing-a-system-using-tuna-interface_monitoring-and-managing-system-status-and-performance)
-* [RHEL Monitoring system performance with perf guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/monitoring-system-performance-with-perf_monitoring-and-managing-system-status-and-performance)
-* [RHEL Configuring an operating system to optimize CPU utilization guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/configuring-an-operating-system-to-optimize-cpu-utilization_monitoring-and-managing-system-status-and-performance)
-* [RHEL Tuning CPU frequency to optimize energy consumption guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/tuning-cpu-frequency-to-optimize-energy-consumption_monitoring-and-managing-system-status-and-performance)
-* [RHEL RT Tuning Guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_for_real_time/8/html/tuning_guide/index)
-* [RHEL Managing, monitoring, and updating the kernel guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_monitoring_and_updating_the_kernel/index)
+* [RHEL Reviewing a system using tuna interface guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/reviewing-a-system-using-tuna-interface_monitoring-and-managing-system-status-and-performance)
+* [RHEL Profiling CPU usage in real time with perf top guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/profiling-cpu-usage-in-real-time-with-top_monitoring-and-managing-system-status-and-performance)
+* [RHEL Configuring an operating system to optimize CPU utilization guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/configuring-an-operating-system-to-optimize-cpu-utilization_monitoring-and-managing-system-status-and-performance)
+* [RHEL Importance of power management guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/importance-of-power-management_monitoring-and-managing-system-status-and-performance#importance-of-power-management_monitoring-and-managing-system-status-and-performance)
+* [RHEL for Real Time guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_for_real_time/9)
+* [RHEL Managing, monitoring, and updating the kernel guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/managing_monitoring_and_updating_the_kernel/index)
 * [RHEL Performance Analysis and Tuning PDF](https://www.redhat.com/cms/managed-files/Handout%20Performance%20Analysis%20and%20Tuning%20Red%20Hat%20Enterprise%20Linux%202019.pdf)
 * [CPU Utilization is Wrong blog post](https://www.brendangregg.com/blog/2017-05-09/cpu-utilization-is-wrong.html)
 * [Linux tracing systems & how they fit together blog post](https://jvns.ca/blog/2017/07/05/linux-tracing-systems/)
@@ -338,20 +347,20 @@ numactl -H
 service that distributes hardware interrupts evenly across cores to
 improve system performance. Except for specific cases (like certain HPC,
 NFV, or RT workloads where manual IRQ affinity setup might be needed)
-irqbalance service should be enabled on all systems.
+the irqbalance service should be enabled on all systems.
 
 [tuned(8)](https://www.mankier.com/8/tuned) is a service that configures
 system performance parameters according to the selected performance
-profile. Examples of [profiles provided by
-tuned](https://www.mankier.com/7/tuned-profiles) include _desktop_,
-_virtual-host_, _virtual-guest_, _latency-performance_, and
-_throughput-performance_. tuned service with suitable profile should be
-enabled on all systems. Further performance tuning can be considered if
-a default tuned profile does not provide optimal settings for a
-particular workload.
+profile. Examples of
+[profiles provided by tuned](https://www.mankier.com/7/tuned-profiles)
+include _desktop_, _virtual-host_, _virtual-guest_, _latency-performance_,
+and _throughput-performance_. The tuned service with suitable profile
+should be enabled on all systems. Further performance tuning can be
+considered if a default tuned profile does not provide optimal settings
+for a particular workload.
 
 ```
-# Show currently active tuned profiles
+# Show the currently active tuned profile
 tuned-adm active
 # List available tuned profiles
 tuned-adm list
@@ -365,7 +374,7 @@ parameters different tuned profiles are altering by reviewing the tuned
 profile configuration files under _/usr/lib/tuned_.
 
 Custom tuned profiles can be created if needed, see
-[RHEL Customizing Tuned profiles guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/customizing-tuned-profiles_monitoring-and-managing-system-status-and-performance).
+[RHEL Customizing TuneD profiles guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/customizing-tuned-profiles_monitoring-and-managing-system-status-and-performance).
 
 ### System-wide Configuration and CPU Related Kernel Parameters
 
@@ -378,7 +387,7 @@ For larger applications refer to vendor documentation for exact
 recommendations and consider application parameter tuning as well.
 
 <pre>
-# RHEL 8 boot parameter to provide PSI metrics under /proc/pressure
+# RHEL boot parameter to provide PSI metrics under /proc/pressure
 # <a href="https://access.redhat.com/solutions/5211481">Is Pressure Stall Information (PSI) supported in RHEL?</a>
 # <a href="https://facebookmicrosites.github.io/psi/docs/overview.html">Getting Started with PSI</a>
 psi=1
@@ -424,9 +433,9 @@ skew_tick=1
 </pre>
 
 Further tuning tips especially for low latency and real-time workloads
-are described in the RHEL RT tuning guide and RHKB articles:
+are described in the RHEL Real Time guides and RHKB articles:
 
-* [RHEL RT Tuning Guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_for_real_time/8/html/tuning_guide/index)
+* [RHEL for Real Time guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_for_real_time/9)
 * [What are CPU "C-states" and how to disable them if needed?](https://access.redhat.com/solutions/202743)
 * [Power management features and latency spikes](https://access.redhat.com/articles/65410)
 
@@ -438,7 +447,7 @@ For a system partitioning example see
 [tuna(8)](https://www.mankier.com/8/tuna) tool can help reducing
 complexity of system tuning tasks:
 
-* [RHEL Reviewing a system using tuna interface guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/reviewing-a-system-using-tuna-interface_monitoring-and-managing-system-status-and-performance)
+* [RHEL Reviewing a system using tuna interface guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/reviewing-a-system-using-tuna-interface_monitoring-and-managing-system-status-and-performance)
 * [How can I reduce jitter by using CPU and IRQ pinning with tuna?](https://access.redhat.com/solutions/2171211)
 * [How can I reduce jitter by using CPU and IRQ pinning without using tuna?](https://access.redhat.com/solutions/2144921)
 
@@ -505,10 +514,10 @@ _bcc-tools_ package.
 #### Per-Process CPU Monitoring
 
 ```
-# Report 5 most CPU using processes
+# Report the 5 most CPU using processes
 pmrep -1gU -t 2 -J 5 proc.hog.cpu
 # Report process CPU/scheduling statistics
-pmrep -gp -t 2 -i '.*PROCNAME.*' :proc-cpu :proc-cpu-ext
+pmrep -gp -t 2 -i PROCNAME :proc-cpu :proc-cpu-ext
 # Show process CPU affinity and priority information
 tuna -t PROCNAME -P
 # Report process CPU usage details
@@ -765,10 +774,10 @@ package.
 #### Per-Process Memory Monitoring
 
 ```
-# Report 5 most memory using processes
+# Report the 5 most memory using processes
 pmrep -1gU -t 2 -J 5 proc.hog.mem
 # Report process memory usage statistics
-pmrep -gp -t 2 -i '.*PROCNAME.*' :proc-mem :proc-mem-ext
+pmrep -gp -t 2 -i PROCNAME :proc-mem :proc-mem-ext
 # Report process per-NUMA-node memory statistics
 watch -d=cumu -n 2 numastat -c PID
 # Summary of memory related system calls
@@ -931,10 +940,10 @@ _bcc-tools_ package.
 ```
 iotop -k -d 2 -p PID
 pidstat -h -d -r -u -w -p PID 2
-# Report 5 most disk using processes
+# Report the 5 most disk using processes
 pmrep -1gU -t 2 -J 5 proc.hog.disk
 # Report process IO statistics
-pmrep -gp -t 2 -i '.*PROCNAME.*' :proc-io :proc-io-ext
+pmrep -gp -t 2 -i PROCNAME :proc-io :proc-io-ext
 # List open files and directories
 lsof -VanP -r 2 -p PID | grep -e REG -e DIR
 # Trace file handling related system calls
@@ -1158,12 +1167,12 @@ _tcp*_ commands from the _bcc-tools_ package.
 # Monitor per-port/pid network connections
 lsof -VP -r 2 -i :PORT
 lsof -VanPi -r 2 -p PID
-# Report 5 most network using processes
-# Requires PCP BCC PMDA netproc module installed
+# Report the 5 most network using processes
+# Requires PCP BPF PMDA netproc module installed
 pmrep -1gU -t 2 -J 5 proc.hog.net
 # Process network usage statistics
-# Requires PCP BCC PMDA netproc module installed
-pmrep -gp -t 2 -i '.*PROCNAME.*' :proc-net :proc-net-ext
+# Requires PCP BPF PMDA netproc module installed
+pmrep -gp -t 2 -i PROCNAME :proc-net :proc-net-ext
 # Dump network traffic
 tcpdump -nnv -i any port 80 or port 443
 # Trace network related system calls
