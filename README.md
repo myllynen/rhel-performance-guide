@@ -318,7 +318,7 @@ CPU related documentation references:
 * [RHEL Importance of power management guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/importance-of-power-management_monitoring-and-managing-system-status-and-performance#importance-of-power-management_monitoring-and-managing-system-status-and-performance)
 * [RHEL for Real Time guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_for_real_time/9)
 * [RHEL Managing, monitoring, and updating the kernel guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/managing_monitoring_and_updating_the_kernel/index)
-* [RHEL Performance Analysis and Tuning PDF](https://www.redhat.com/cms/managed-files/Handout%20Performance%20Analysis%20and%20Tuning%20Red%20Hat%20Enterprise%20Linux%202019.pdf)
+* [RHEL Performance Analysis and Tuning PDF](https://www.redhat.com/rhdc/managed-files/Handout%20Performance%20Analysis%20and%20Tuning%20Red%20Hat%20Enterprise%20Linux%202019.pdf)
 * [CPU Utilization is Wrong blog post](https://www.brendangregg.com/blog/2017-05-09/cpu-utilization-is-wrong.html)
 * [Linux tracing systems & how they fit together blog post](https://jvns.ca/blog/2017/07/05/linux-tracing-systems/)
 * [Linux Performance page by Brendan Gregg](https://www.brendangregg.com/linuxperf.html)
@@ -389,7 +389,7 @@ recommendations and consider application parameter tuning as well.
 
 <pre>
 # RHEL boot parameter to provide PSI metrics under /proc/pressure
-# <a href="https://access.redhat.com/solutions/5211481">Is Pressure Stall Information (PSI) supported in RHEL?</a>
+# <a href="https://access.redhat.com/solutions/5211481">How to enable Pressure Stall Information (PSI)</a>
 # <a href="https://facebookmicrosites.github.io/psi/docs/overview.html">Getting Started with PSI</a>
 psi=1
 </pre>
@@ -443,7 +443,7 @@ are described in the RHEL Real Time guides and RHKB articles:
 ### Additional Configurations and Tools
 
 For a system partitioning example see
-[RHEL Performance Analysis and Tuning PDF](https://www.redhat.com/cms/managed-files/Handout%20Performance%20Analysis%20and%20Tuning%20Red%20Hat%20Enterprise%20Linux%202019.pdf).
+[RHEL Performance Analysis and Tuning PDF](https://www.redhat.com/rhdc/managed-files/Handout%20Performance%20Analysis%20and%20Tuning%20Red%20Hat%20Enterprise%20Linux%202019.pdf).
 
 [tuna(8)](https://www.mankier.com/8/tuna) tool can help reducing
 complexity of system tuning tasks:
@@ -478,16 +478,16 @@ tuna -c 2-3 -t sshd -m -c 4-7 -t httpd -m
 ```
 # Show CPU and scheduler related statistics
 top
-sar -q 2
-sar -u ALL 2
-sar -P ALL 2
-vmstat -S m -w 2
+pmrep -t 2 :sar-q                       # or: sar -q 2
+pmrep -t 2 :sar-u-ALL                   # or: sar -u ALL 2
+pmrep -t 2 :sar-u-ALL-p-ALL             # or: sar -P ALL 2
+pmrep -b MB -t 2 :vmstat-w              # or: vmstat -S m -w 2
+pmrep -t 2 :mpstat-I-SUM :mpstat-P-ALL  # or: mpstat -u -I SUM -P ALL 2
 systemd-cgtop -d 2
-mpstat -u -I SUM -P ALL 2
 # Report kernel PSI CPU metrics
 pmrep -gp -t 2 kernel.all.pressure.cpu
 # Report various CPU related metrics
-pmrep kernel<TAB>
+pmrep -p kernel<TAB>
 ```
 
 ```
@@ -505,7 +505,7 @@ perf record -g -a -- sleep 30
 perf report -n -s cpu,pid,comm,dso
 ```
 
-See also [PCP](https://pcp.io/) tools
+See also the [PCP](https://pcp.io/) tools
 [pcp-atop(1)](https://man7.org/linux/man-pages/man1/pcp-atop.1.html),
 [pcp-htop(1)](https://man7.org/linux/man-pages/man1/pcp-htop.1.html),
 [pmrep(1)](https://man7.org/linux/man-pages/man1/pmrep.1.html), and
@@ -546,7 +546,7 @@ Memory related documentation references:
 * [RHEL Profiling memory allocation with numastat guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/profiling-memory-allocation-with-numastat_monitoring-and-managing-system-status-and-performance)
 * [RHEL Profiling memory accesses with perf mem guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/profiling-memory-accesses-with-perf-mem_monitoring-and-managing-system-status-and-performance)
 * [RHEL Detecting false sharing with perf c2c guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/detecting_false_sharing_with_perf_c2c)
-* [RHEL Performance Analysis and Tuning PDF](https://www.redhat.com/cms/managed-files/Handout%20Performance%20Analysis%20and%20Tuning%20Red%20Hat%20Enterprise%20Linux%202019.pdf)
+* [RHEL Performance Analysis and Tuning PDF](https://www.redhat.com/rhdc/managed-files/Handout%20Performance%20Analysis%20and%20Tuning%20Red%20Hat%20Enterprise%20Linux%202019.pdf)
 * [In defence of swap: common misconceptions blog post](https://chrisdown.name/2018/01/02/in-defence-of-swap.html)
 * [Linux kernel VM sysctl document](https://www.kernel.org/doc/Documentation/sysctl/vm.txt)
 * [RHEL technology capabilities and limits page](https://access.redhat.com/articles/rhel-limits)
