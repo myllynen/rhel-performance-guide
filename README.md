@@ -41,9 +41,12 @@ and
 and [Prometheus](https://prometheus.io/) are often extremely helpful
 and should be considered especially in larger environments.
 
-The reader is expected to be familiar with basic operating system
-concepts and terms and understand the output of the example commands.
-Although exact understanding of technologies like
+Reading the
+[Initial investigation for any performance issue](https://access.redhat.com/articles/1162133)
+Red Hat Knowledge Base (RHKB) article is recommended. Additionally, the
+reader is expected to be familiar with basic operating system concepts
+and terms and understand the output of the example commands. Although
+exact understanding of technologies like
 [eBPF](https://www.brendangregg.com/blog/2019-01-01/learn-ebpf-tracing.html)
 is not mandatory it might be helpful in many cases.
 
@@ -116,8 +119,7 @@ pcp atop
 pcp htop
 systemd-cgtop -d 2
 # Report vmstat -w like statistics using PCP
-# This corresponds to: vmstat -S m -w 2
-pmrep -b MB -t 2 :vmstat-w
+pmrep -b MB -t 2 :vmstat-w              # or: vmstat -S m -w 2
 # Report system overall process state statistics
 pmrep -gp -t 2 :proc-os-stats
 ```
@@ -215,7 +217,7 @@ pmrep -1gU -t 2 -J 5 proc.hog.net
 # Process network usage statistics
 # Requires PCP BPF PMDA netatop module installed
 pmrep -gp -t 2 -i PROCNAME :proc-net :proc-net-ext
-# Trace network related system calls
+# Trace and summarize network related system calls
 strace -CfttTy -e trace=%network -p PID
 ```
 
@@ -381,8 +383,8 @@ Custom tuned profiles can be created if needed, see
 
 Many of the tuned profiles set these up properly for most cases. As
 stated above, do *not* apply any of these tunables blindly! Also note
-that many of the values shown below are either RHEL or tuned defaults,
-not values that would work optimally everywhere!
+that many of the values shown below are either RHEL or tuned
+defaults, not values that would work optimally everywhere!
 
 For larger applications refer to vendor documentation for exact
 recommendations and consider application parameter tuning as well.
@@ -433,8 +435,9 @@ mce=ignore_ce
 skew_tick=1
 </pre>
 
-Further tuning tips especially for low latency and real-time workloads
-are described in the RHEL Real Time guides and RHKB articles:
+Further tuning tips especially for low latency and real-time
+workloads are described in the RHEL Real Time guides and RHKB
+articles:
 
 * [RHEL for Real Time guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_for_real_time/9)
 * [What are CPU "C-states" and how to disable them if needed?](https://access.redhat.com/solutions/202743)
@@ -452,14 +455,14 @@ complexity of system tuning tasks:
 * [How can I reduce jitter by using CPU and IRQ pinning with tuna?](https://access.redhat.com/solutions/2171211)
 * [How can I reduce jitter by using CPU and IRQ pinning without using tuna?](https://access.redhat.com/solutions/2144921)
 
-[nice(1)](https://man7.org/linux/man-pages/man1/nice.1.html) can be used
-to change and run a process with modified scheduling priority.
-[chrt(1)](https://man7.org/linux/man-pages/man1/chrt.1.html) can be used
-to check and set real-time scheduling attributes of a process.
-[taskset(1)](https://man7.org/linux/man-pages/man1/taskset.1.html) can
-be used to check and set CPU affinity of a process.
-[numactl(8)](https://man7.org/linux/man-pages/man8/numactl.8.html) can
-be used to run processes with a specific NUMA binding policy.
+[nice(1)](https://man7.org/linux/man-pages/man1/nice.1.html) can be
+used to change and run a process with modified scheduling priority.
+[chrt(1)](https://man7.org/linux/man-pages/man1/chrt.1.html) can be
+used to check and set real-time scheduling attributes of a process.
+[taskset(1)](https://man7.org/linux/man-pages/man1/taskset.1.html)
+can be used to check and set CPU affinity of a process.
+[numactl(8)](https://man7.org/linux/man-pages/man8/numactl.8.html)
+can be used to run processes with a specific NUMA binding policy.
 
 ```
 # Pin process 1234 to CPU core 2
@@ -541,11 +544,11 @@ sysbench ...
 
 Memory related documentation references:
 
-* [RHEL Configuring huge pages guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/assembly_configuring-huge-pages_monitoring-and-managing-system-status-and-performance)
-* [RHEL Configuring an operating system to optimize memory access guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/assembly_configuring-an-operating-system-to-optimize-memory-access_monitoring-and-managing-system-status-and-performance)
-* [RHEL Profiling memory allocation with numastat guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/profiling-memory-allocation-with-numastat_monitoring-and-managing-system-status-and-performance)
-* [RHEL Profiling memory accesses with perf mem guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/profiling-memory-accesses-with-perf-mem_monitoring-and-managing-system-status-and-performance)
-* [RHEL Detecting false sharing with perf c2c guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/detecting_false_sharing_with_perf_c2c)
+* [RHEL Configuring huge pages guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/configuring-huge-pages_monitoring-and-managing-system-status-and-performance)
+* [RHEL Configuring an operating system to optimize memory access guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/configuring-an-operating-system-to-optimize-memory-access_monitoring-and-managing-system-status-and-performance)
+* [RHEL Profiling memory allocation with numastat guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/profiling-memory-allocation-with-numastat_monitoring-and-managing-system-status-and-performance)
+* [RHEL Profiling memory accesses with perf mem guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/profiling-memory-accesses-with-perf-mem_monitoring-and-managing-system-status-and-performance)
+* [RHEL Detecting false sharing guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/detecting-false-sharing_monitoring-and-managing-system-status-and-performance)
 * [RHEL Performance Analysis and Tuning PDF](https://www.redhat.com/rhdc/managed-files/Handout%20Performance%20Analysis%20and%20Tuning%20Red%20Hat%20Enterprise%20Linux%202019.pdf)
 * [In defence of swap: common misconceptions blog post](https://chrisdown.name/2018/01/02/in-defence-of-swap.html)
 * [Linux kernel VM sysctl document](https://www.kernel.org/doc/Documentation/sysctl/vm.txt)
@@ -554,28 +557,30 @@ Memory related documentation references:
 
 ### Hardware and System-wide Memory Configuration
 
-There are usually not many memory related hardware configurations but it
-is a good idea to check Memory Protection which should be Enabled and
-also make sure Node Interleaving is Disabled.
+There are usually not many memory related hardware configurations
+but it is a good idea to check Memory Protection which should be
+Enabled and also make sure Node Interleaving is Disabled.
 
-The suitable amount of swap depends on the use case but a good starting
-point could be 4 GB. Having no swap at all rarely provides for the best
-performance and using huge amounts of swap is usually not helpful.
+The suitable amount of swap depends on the use case but a good
+starting point could be 4 GB. Having no swap at all rarely provides
+for the best performance and using huge amounts of swap is usually
+not helpful.
 
-The Linux kernel uses memory not in use by applications for buffering
-and caching. While buffering and caching is a good thing constant paging
-and swapping is not and extreme swapping can render the system almost
-completely unresponsive. The most important swapping metric is swapping
-activity, that is, how much pages are being swapped in and out, not the
-plain amount of swap currently in use. There might be a portion of swap
-in use at any given time but in case there is no constant swapping
-activity then this swap usage is a merely a sign that there has been a
-memory pressure situation in the past and the kernel has paged out some
-idle pages or processes to make room for actively running applications,
-or perhaps for buffering and caching. Since all modern operating systems
-use demand paging the swapped out pages are not proactively swapped back
-into the main memory until there is a real need for them so swap may
-remain long used after a memory pressure situation.
+The Linux kernel uses memory not in use by applications for
+buffering and caching. While buffering and caching is a good thing
+constant paging and swapping is not and extreme swapping can render
+the system almost completely unresponsive. The most important
+swapping metric is swapping activity, that is, how much pages are
+being swapped in and out, not the plain amount of swap currently in
+use. There might be a portion of swap in use at any given time but
+in case there is no constant swapping activity then this swap usage
+is a merely a sign that there has been a memory pressure situation
+in the past and the kernel paged out some idle pages or processes to
+make room for actively running applications, or perhaps for
+buffering and caching. Since all modern operating systems use demand
+paging the swapped out pages are not proactively swapped back into
+the main memory until there is a real need for them so swap may
+remain long in use after a memory pressure situation.
 
 See the following articles for more discussion on swap:
 
@@ -583,12 +588,13 @@ See the following articles for more discussion on swap:
 * [https://chrisdown.name/2018/01/02/in-defence-of-swap.html](https://chrisdown.name/2018/01/02/in-defence-of-swap.html)
 * [https://www.redhat.com/en/blog/do-we-really-need-swap-modern-systems](https://www.redhat.com/en/blog/do-we-really-need-swap-modern-systems)
 
-In case the system runs out of memory the dreaded OOM-killer will act
-(the per-process oom related tunables are described in the second link):
+In case the system runs out of memory the dreaded OOM-killer will
+act (the per-process oom related tunables are described in the
+second link):
 
 * [How does the OOM-Killer select a task to kill?](https://access.redhat.com/solutions/66458)
 * [https://www.kernel.org/doc/Documentation/filesystems/proc.txt](https://www.kernel.org/doc/Documentation/filesystems/proc.txt)
-* [https://man7.org/linux/man-pages/man8/systemd-oomd.service.8.html](https://www.kernel.org/doc/Documentation/filesystems/proc.txt)
+* [https://man7.org/linux/man-pages/man8/systemd-oomd.service.8.html](https://man7.org/linux/man-pages/man8/systemd-oomd.service.8.html)
 
 ```
 # Show current memory layout
@@ -601,10 +607,10 @@ free -m
 
 ### System V IPC
 
-Shared memory, semaphore, and message queue configuration on the system
-should be changed when applications require more of these resources than
-is available by default. Please refer to application documentation for
-their exact requirements.
+Shared memory, semaphore, and message queue configuration on the
+system should be changed when applications require more of these
+resources than is available by default. Please refer to application
+documentation for their exact requirements.
 
 * [What are the kernel parameters for IPC?](https://access.redhat.com/solutions/20519)
 * [What are the kernel parameters available for System V IPC tuning?](https://access.redhat.com/solutions/431633)
@@ -624,19 +630,19 @@ ipcs -a
 Transparent Huge Pages (THP) are enabled by default on RHEL and are
 usually helpful with most applications. However, some memory heavy
 applications such as databases often benefit from static huge pages
-especially on very large memory systems. Some applications (or certain
-application versions) even have
+especially on very large memory systems. Some applications (or
+certain application versions) even have
 [higher CPU usage with THP](https://access.redhat.com/solutions/1265183).
 
 Considering the above, it is best to check the configuration
 recommendations of each application and then measure the results of
 different approaches. Depending on the use case and workload profile
-(e.g., latency or throughput sensitive) either the default THP, possibly
-customized khugepaged parameters, or static huge pages setup may yield
-the best performance. Exotic setups like NUMA node specific huge page
-configurations are rarely helpful. Note that some application vendors
-recommend disabling huge pages altogether; please refer to vendor
-documentation for the exact recommendations.
+(e.g., latency or throughput sensitive) either the default THP,
+possibly customized khugepaged parameters, or static huge pages
+setup may yield the best performance. Exotic setups like NUMA node
+specific huge page configurations are rarely helpful. Note that some
+application vendors recommend disabling huge pages altogether;
+please refer to vendor documentation for the exact recommendations.
 
 * [How can I configure hugepages in RHEL?](https://access.redhat.com/solutions/33613)
 * [How to use, monitor, and disable transparent hugepages in RHEL?](https://access.redhat.com/solutions/46111)
@@ -660,15 +666,17 @@ cat /proc/sys/vm/hugetlb_shm_group
 
 ### NUMA
 
-NUMA (non-uniform memory access) setup can be crucial on larger systems.
-On virtual platforms it should also be made sure NUMA topology awareness
-is propagated properly by CPU pinning in case applications are running
-on large VMs spanning over several NUMA nodes.
+NUMA (non-uniform memory access) setup can be crucial on larger
+systems. On virtual platforms it should also be made sure NUMA
+topology awareness is propagated properly by CPU pinning in case
+applications are running on large VMs spanning over several NUMA
+nodes.
 
-By default automatic kernel NUMA balancing is used. This is suitable in
-the majority of use cases but certain applications (like databases) may
-benefit from disabling this feature. Again, please refer to application
-specific documentation for further details and recommendations on this.
+By default automatic kernel NUMA balancing is used. This is suitable
+in the majority of use cases but certain applications (like
+databases) may benefit from disabling this feature. Again, please
+refer to application specific documentation for further details and
+recommendations on this.
 
 <pre>
 # Show current NUMA usage
@@ -684,13 +692,14 @@ In some relatively rare cases using
 [numad(8)](https://www.mankier.com/8/numad) instead of the kernel
 automatic NUMA balancing might provide some performance benefits,
 however this should be used only when measured to have positive
-performance impact. Sometimes static NUMA bindings can outperform both
-automatic and [numad(8)](https://www.mankier.com/8/numad) based
-balancing, this should be considered only for very specific workloads
-(such as certain VNFs). See
-[taskset(1)](https://man7.org/linux/man-pages/man1/taskset.1.html) and
-[numactl(8)](https://man7.org/linux/man-pages/man8/numactl.8.html) for
-details on CPU affinity and static NUMA bindings.
+performance impact. Sometimes static NUMA bindings can outperform
+both automatic and [numad(8)](https://www.mankier.com/8/numad) based
+balancing, this should be considered only for very specific
+workloads (such as certain VNFs). See
+[taskset(1)](https://man7.org/linux/man-pages/man1/taskset.1.html)
+and
+[numactl(8)](https://man7.org/linux/man-pages/man8/numactl.8.html)
+for details on CPU affinity and static NUMA bindings.
 
 * [https://www.redhat.com/en/blog/mysteries-numa-memory-management-revealed](https://www.redhat.com/en/blog/mysteries-numa-memory-management-revealed)
 
@@ -699,16 +708,16 @@ details on CPU affinity and static NUMA bindings.
 See the above sections about IPC, THP, and NUMA related parameters.
 
 Many of the tuned profiles set these up properly for most cases. As
-stated above, do *not* apply any of these tunables blindly! Also note
-that many of the values shown below are either RHEL or tuned defaults,
-not values that would work optimally everywhere!
+stated above, do *not* apply any of these tunables blindly! Also
+note that many of the values shown below are either RHEL or tuned
+defaults, not values that would work optimally everywhere!
 
-Do NOT change any of these parameters without testing and understanding
-their meaning, they might cause negative performance impact especially
-under heavy load if changed inappropriately.
+Do NOT change any of these parameters without testing and
+understanding their meaning, they might cause negative performance
+impact especially under heavy load if changed inappropriately.
 
 <pre>
-# <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/assembly_configuring-an-operating-system-to-optimize-memory-access_monitoring-and-managing-system-status-and-performance#assembly_optimizing-a-systems-memory-utilization_assembly_configuring-an-operating-system-to-optimize-memory-access">RHEL 8 documentation section</a>
+# <a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/configuring-an-operating-system-to-optimize-memory-access_monitoring-and-managing-system-status-and-performance">RHEL documentation section</a>
 # <a href="https://www.kernel.org/doc/Documentation/sysctl/vm.txt">https://www.kernel.org/doc/Documentation/sysctl/vm.txt</a>
 vm.dirty_ratio = N
 vm.dirty_background_ratio = N
@@ -739,10 +748,10 @@ vm.overcommit_memory = N
 
 ### Configuring Applications and Services
 
-The most important configuration is to have enough memory available for
-running applications and services to avoid constant swapping or OOM. For
-details on IPC, THP, and NUMA configuration for each application please
-refer to their documentation.
+The most important configuration is to have enough memory available
+for running applications and services to avoid constant swapping or
+OOM. For details on IPC, THP, and NUMA configuration for each
+application please refer to their documentation.
 
 ### Memory Related Monitoring and Testing
 
@@ -751,26 +760,27 @@ refer to their documentation.
 ```
 # Monitor memory statistics
 top
-sar -W 2
-sar -B 2
-sar -H 2
-sar -r ALL 2
-vmstat -S m -w 2
+pmrep -t 2 :sar-W                       # or: sar -W 2
+pmrep -t 2 :sar-B                       # or: sar -B 2
+pmrep -t 2 :sar-H                       # or: sar -H 2
+pmrep -t 2 :sar-r-ALL                   # or: sar -r ALL 2
+pmrep -b MB -t 2 :vmstat-w              # or: vmstat -S m -w 2
 # Report kernel PSI memory metrics
 pmrep -gp -t 2 kernel.all.pressure.memory
 # Report NUMA related statistics
 pmrep -p -t 2 :numa-hint-faults
+pmrep -p -t 2 :numa-per-node-cpu
 pmrep -p -t 2 :numa-pgmigrate-per-node
 # Report various memory related metrics
-pmrep mem<TAB>
+pmrep -p mem<TAB>
 ```
 
 See also [PCP](https://pcp.io/) tools
 [pcp-atop(1)](https://man7.org/linux/man-pages/man1/pcp-atop.1.html),
 [pcp-htop(1)](https://man7.org/linux/man-pages/man1/pcp-htop.1.html),
 [pmrep(1)](https://man7.org/linux/man-pages/man1/pmrep.1.html), and
-_cache*_, _oomkill_, _shmsnoop_, _swapin_ commands from the _bcc-tools_
-package.
+_cache*_, _oomkill_, _shmsnoop_, _swapin_ commands from the
+_bcc-tools_ package.
 
 #### Per-Process Memory Monitoring
 
@@ -781,7 +791,7 @@ pmrep -1gU -t 2 -J 5 proc.hog.mem
 pmrep -gp -t 2 -i PROCNAME :proc-mem :proc-mem-ext
 # Report process per-NUMA-node memory statistics
 watch -d=cumu -n 2 numastat -c PID
-# Summary of memory related system calls
+# Summarize memory related system calls
 strace -fc -e trace=%memory COMMAND
 # Report page migrations
 perf stat -e migrate:mm_migrate_pages -I 2000 -p PID
@@ -814,11 +824,10 @@ stress ...
 
 IO related documentation references:
 
-* [RHEL Factors affecting I/O and file system performance guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/factors-affecting-i-o-and-file-system-performance_monitoring-and-managing-system-status-and-performance)
-* [RHEL Configuring and managing logical volumes guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_logical_volumes/index)
-* [RHEL Configuring device mapper multipath guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_device_mapper_multipath/index)
-* [RHEL Deduplicating and compressing storage guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/deduplicating_and_compressing_storage/index)
-* [RHEL Deduplicating and compressing logical volumes on RHEL guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/deduplicating_and_compressing_logical_volumes_on_rhel/index)
+* [RHEL Factors affecting I/O and file system performance guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/factors-affecting-i-o-and-file-system-performance_monitoring-and-managing-system-status-and-performance)
+* [RHEL Configuring and managing logical volumes guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/configuring_and_managing_logical_volumes/index)
+* [RHEL Configuring device mapper multipath guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/configuring_device_mapper_multipath/index)
+* [RHEL Deduplicating and compressing logical volumes on RHEL guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/deduplicating_and_compressing_logical_volumes_on_rhel/index)
 * [Linux kernel VM sysctl document](https://www.kernel.org/doc/Documentation/sysctl/vm.txt)
 * [RHEL technology capabilities and limits page](https://access.redhat.com/articles/rhel-limits)
 * [Linux Performance page by Brendan Gregg](https://www.brendangregg.com/linuxperf.html)
@@ -861,6 +870,7 @@ echo N > /sys/block/DEVICE/queue/max_sectors_kb
 
 <pre>
 # <a href="https://access.redhat.com/solutions/4378581">How to set the read_ahead_kb value persistently?</a>
+# <a href="https://access.redhat.com/solutions/7041531">Application performance dropped after upgrade</a>
 # Can be up to max_sectors_kb
 echo N > /sys/block/DEVICE/queue/read_ahead_kb
 </pre>
@@ -870,7 +880,6 @@ echo N > /sys/block/DEVICE/queue/read_ahead_kb
 <pre>
 # For lots of small files test smaller block size
 # <a href="https://access.redhat.com/solutions/37930">Filesystem with a blocksize larger than 4096?</a>
-# <a href="https://access.redhat.com/solutions/1614393">What is the maximum supported XFS block size in RHEL?</a>
 # <a href="https://access.redhat.com/solutions/3202781">How to create XFS filesystem with 512 bytes block size?</a>
 # <a href="https://access.redhat.com/solutions/70522">What is the maximum block size of the ext4 filesystem in RHEL?</a>
 mkfs.xfs -b size=1024 /dev/sdX1
@@ -905,8 +914,8 @@ vm.swappiness = N
 ### Configuring Applications and Services
 
 Consider using dedicated partitions as needed and per vendor
-recommendations. For recommendations for applications please refer to
-vendor documentation.
+recommendations. For recommendations for applications please refer
+to vendor documentation.
 
 ### IO Related Monitoring and Testing
 
@@ -914,19 +923,19 @@ vendor documentation.
 
 ```
 # Monitor IO statistics
-sar -bd 2
-vmstat -S m -w 2
+sar -bd 2     # or: pmrep -t 2 :sar-b / :sar-d-dev / :sar-d-dm
+pmrep -b MB -t 2 :vmstat-w              # or: vmstat -S m -w 2
 iotop -Poka -d 2
 # Report kernel PSI IO metrics
 pmrep -gp -t 2 kernel.all.pressure.io
 # Monitor block device activity
-iostat -dmtxz -p ALL 2
+iostat -dmtxz -p ALL 2           # or: pmrep -t 2 :iostat-dktx
 btrace -t -s /dev/sdX1
 # Report various FS/IO related metrics
-pmrep filesys<TAB>
-pmrep mounts<TAB>
-pmrep disk<TAB>
-pmrep vfs<TAB>
+pmrep -p filesys<TAB>
+pmrep -p mounts<TAB>
+pmrep -p disk<TAB>
+pmrep -p vfs<TAB>
 ```
 
 See also [PCP](https://pcp.io/) tools
@@ -940,14 +949,16 @@ _bcc-tools_ package.
 
 ```
 iotop -k -d 2 -p PID
-pidstat -h -d -r -u -w -p PID 2
+pidstat -h -d -r -u -w -C '.*PROCNAME.*' 2
+# Or the same reporting with PCP
+pmrep -t 2 -i PROCNAME :pidstat :pidstat-d :pidstat-r :pidstat-w
 # Report the 5 most disk using processes
 pmrep -1gU -t 2 -J 5 proc.hog.disk
 # Report process IO statistics
 pmrep -gp -t 2 -i PROCNAME :proc-io :proc-io-ext
 # List open files and directories
 lsof -VanP -r 2 -p PID | grep -e REG -e DIR
-# Trace file handling related system calls
+# Trace and summarize file ops related system calls
 strace -CfttTy -e trace=%file,%desc -p PID
 ```
 
@@ -963,11 +974,13 @@ fio test.fio
 
 Network related documentation references:
 
-* [RHEL Configuring and managing networking guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/index)
-* [RHEL Configuring RHEL to optimize access to network resources guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/configuring-rhel-to-optimize-access-to-network-resources_monitoring-and-managing-system-status-and-performance)
-* [Illustrated Guide to Monitoring and Tuning the Linux Networking Stack blog post](https://blog.packagecloud.io/eng/2016/10/11/monitoring-tuning-linux-networking-stack-receiving-data-illustrated/)
+* [RHEL Configuring and managing networking guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/configuring_and_managing_networking/index)
+* [RHEL Tuning the network performance guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/tuning-the-network-performance_monitoring-and-managing-system-status-and-performance)
+* [Illustrated Guide to Monitoring and Tuning the Linux Networking Stack blog post](https://blog.packagecloud.io/illustrated-guide-monitoring-tuning-linux-networking-stack-receiving-data/)
 * [Linux network performance parameters page by Leandro Moreira](https://github.com/leandromoreira/linux-network-performance-parameters)
-* [Monitoring and Tuning the Linux Networking Stack blog post](https://blog.packagecloud.io/eng/2016/06/22/monitoring-tuning-linux-networking-stack-receiving-data/)
+* [Monitoring and Tuning the Linux Networking Stack blog post](https://blog.packagecloud.io/monitoring-tuning-linux-networking-stack-receiving-data/)
+* [RHKB What are the kernel parameters available for network tuning? article](https://access.redhat.com/solutions/108513)
+* [RHKB Network debugging on Red Hat Enterprise Linux article](https://access.redhat.com/articles/1311173)
 * [Linux kernel IP sysctl documentation](https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt)
 * [Linux kernel network scaling documentation](https://www.kernel.org/doc/Documentation/networking/scaling.txt)
 * [RHKB How does tcpdump capture packets? article](https://access.redhat.com/solutions/4272142)
@@ -982,19 +995,19 @@ Network related documentation references:
 
 ```
 # Show NIC details and counters
-ip -s -s link show [or ip -s -s l]
+ip -s -s link show  # or: ip -s -s l
 # Show NIC addresses
-ip address show [or ip a]
+ip address show     # or: ip a
 # Show NIC driver details
 ethtool -i eth0
 # Show NIC statistics
 ethtool -S eth0
 # Show routing information
-ip route show [or ip r]
+ip route show       # or: ip r
 # Show ARP information
-ip neigh show [or ip n]
+ip neigh show       # or: ip n
 # Report various NIC metrics
-pmrep network.interface<TAB>
+pmrep -p network.interface<TAB>
 ```
 
 ### Jumbo Frames
@@ -1016,7 +1029,7 @@ ethtool -G eth0 tx 4096
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/solutions/288433">What do the offload parameters shown by ethtool -k mean?</a>
+# <a href="https://access.redhat.com/solutions/5633441">What do the offload parameters shown by ethtool -k mean?</a>
 ethtool -k eth0
 ethtool -K eth0 ...
 </pre>
@@ -1028,8 +1041,11 @@ ethtool -L eth0 combined N
 </pre>
 
 <pre>
-# <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/assembly_configuring-ethtool-coalesce-settings_configuring-and-managing-networking">RHEL 8 documentation section</a>
+# <a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_for_real_time/9/html/optimizing_rhel_9_for_real_time_for_low_latency_operation/assembly_network-determinism-tips_optimizing-rhel9-for-real-time-for-low-latency-operation#optimizing-rhel-for-latency-or-throughput-sensitive-services_assembly_network-determinism-tips"">Optimizing RHEL for latency or throughput-sensitive services</a>
+# <a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/configuring_and_managing_networking/configuring-ethtool-settings-in-networkmanager-connection-profiles_configuring-and-managing-networking#proc_configuring-an-ethtool-coalesce-settings-by-using-nmcli_configuring-ethtool-settings-in-networkmanager-connection-profiles">Configuring an ethtool coalesce setting by using nmcli</a>
 ethtool -c eth0
+ethtool -C eth0 rx-usecs 100
+ethtool -C eth0 rx-frames 128
 ethtool -C eth0 adaptive-rx on
 ethtool -C eth0 adaptive-tx on
 </pre>
@@ -1091,7 +1107,7 @@ net.core.netdev_budget = 600
 </pre>
 
 <pre>
-# Consider these only with supporting applications
+# Consider these only with supporting applications, rarely needed
 # <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/performance_tuning_guide/sect-red_hat_enterprise_linux-performance_tuning_guide-networking-configuration_tools#sect-Red_Hat_Enterprise_Linux-Performance_Tuning_Guide-Configuration_tools-Configuring_interrupt_queues">RHEL 7 documentation section</a>
 # <a href="https://www.kernel.org/doc/Documentation/sysctl/net.txt">https://www.kernel.org/doc/Documentation/sysctl/net.txt</a>
 ethtool -k eth0 | grep busy
@@ -1122,11 +1138,6 @@ net.ipv4.tcp_mtu_probing = 1
 net.ipv4.tcp_ecn = 1
 ```
 
-### Additional Optimizations
-
-Consider utilizing RSS / RPS / RFS where needed and supported, see
-[RHEL Configuring RHEL to optimize access to network resources guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/configuring-rhel-to-optimize-access-to-network-resources_monitoring-and-managing-system-status-and-performance).
-
 ### Configuring Applications and Services
 
 For any local communication always use the localhost address only, not
@@ -1143,24 +1154,22 @@ ss -s
 nstat -a
 # Monitor network traffic
 iptraf-ng
-sar -n DEV 2
-sar -n SOCK 2
-iptstate -lt -R 2
+pmrep -t 2 :sar-n-DEV                   # or: sar -n DEV 2
+pmrep -t 2 :sar-n-SOCK                  # or: sar -n SOCK 2
 # Show dropped packets
 nstat -az | grep -i -e drop -e noroute
 # Show socket details
-ss -noemitaup
-ss -lnptu
-ss -nrt
+ss -noemitaup                           # or: pcp ss -noemitau
+ss -lntup                               # or: pcp ss -lntu
+ss -nrt                                 # or: pcp ss -nt
 ```
 
 See also [PCP](https://pcp.io/) tools
 [pcp-atop(1)](https://man7.org/linux/man-pages/man1/pcp-atop.1.html),
 [pcp-htop(1)](https://man7.org/linux/man-pages/man1/pcp-htop.1.html),
-[pmrep(1)](https://man7.org/linux/man-pages/man1/pmrep.1.html) with [PCP
-BCC PMDA netproc
-module](https://man7.org/linux/man-pages/man1/pmdabcc.1.html), and
-_tcp*_ commands from the _bcc-tools_ package.
+[pmrep(1)](https://man7.org/linux/man-pages/man1/pmrep.1.html) with
+[PCP BPF PMDA netatop module](https://man7.org/linux/man-pages/man1/pmdabpf.1.html),
+and _tcp*_ commands from the _bcc-tools_ package.
 
 #### Per-process Monitoring
 
@@ -1169,14 +1178,14 @@ _tcp*_ commands from the _bcc-tools_ package.
 lsof -VP -r 2 -i :PORT
 lsof -VanPi -r 2 -p PID
 # Report the 5 most network using processes
-# Requires PCP BPF PMDA netproc module installed
+# Requires PCP BPF PMDA netatop module installed
 pmrep -1gU -t 2 -J 5 proc.hog.net
 # Process network usage statistics
-# Requires PCP BPF PMDA netproc module installed
+# Requires PCP BPF PMDA netatop module installed
 pmrep -gp -t 2 -i PROCNAME :proc-net :proc-net-ext
 # Dump network traffic
 tcpdump -nnv -i any port 80 or port 443
-# Trace network related system calls
+# Trace and summarize network related system calls
 strace -CfttTy -e trace=%network -p PID
 ```
 
@@ -1192,7 +1201,7 @@ iperf -V ...
 * [Linux Performance page by Brendan Gregg](https://www.brendangregg.com/linuxperf.html)
 * [Visualizing performance in RHEL](https://www.redhat.com/en/blog/visualizing-performance-red-hat-enterprise-linux-84-web-console)
 * [RHEL Troubleshooting Guide](https://github.com/myllynen/rhel-troubleshooting-guide)
-* [RHEL documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/)
+* [RHEL documentation](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/)
 * [Red Hat Knowledge Base](https://access.redhat.com/knowledgebase/)
 * [Red Hat Customer Portal](https://access.redhat.com/)
 
