@@ -68,8 +68,8 @@ chapters
 and
 [4](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/monitoring-performance-by-using-the-metrics-rhel-system-role_monitoring-and-managing-system-status-and-performance).
 
-The PCP commands below expect the pcp-system-tools package to be
-installed and the pmcd service running. The service does not do
+The PCP commands below expect the _pcp-system-tools_ package to be
+installed and the _pmcd_ service running. The service does not do
 anything unless PCP tools are fetching for metrics so it is typically
 fine to enable it also on production systems. One of the notable
 benefits of PCP is that all the commands work both on live systems and
@@ -348,17 +348,17 @@ numactl -H
 service that distributes hardware interrupts evenly across cores to
 improve system performance. Except for specific cases (like certain
 HPC, NFV, or RT workloads where manual IRQ affinity setup might be
-needed) the irqbalance service should be enabled on all systems.
+needed) the _irqbalance_ service should be enabled on all systems.
 
 [tuned(8)](https://www.mankier.com/8/tuned) is a service that
 configures system performance parameters according to the selected
 performance profile. Examples of
 [profiles provided by tuned](https://www.mankier.com/7/tuned-profiles)
 include _desktop_, _virtual-host_, _virtual-guest_,
-_latency-performance_, and _throughput-performance_. The tuned service
-with a suitable profile should be enabled on all systems. Further
-performance tuning can be considered if a default tuned profile does
-not provide optimal settings for a particular workload.
+_latency-performance_, and _throughput-performance_. The _tuned_
+service with a suitable profile should be enabled on all systems.
+Further performance tuning can be considered if a default tuned
+profile does not provide optimal settings for a particular workload.
 
 ```
 # Show the currently active tuned profile
