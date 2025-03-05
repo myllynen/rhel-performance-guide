@@ -1,7 +1,7 @@
 title: RHEL Performance Guide
 description: A complete guide to RHEL performance tuning and monitoring
 
-remote_theme: rundocs/jekyll-rtd-theme
+remote_theme: clearpathrobotics/jekyll-rtd-theme
 
 defaults:
   - scope:
