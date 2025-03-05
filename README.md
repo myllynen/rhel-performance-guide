@@ -325,12 +325,13 @@ CPU related documentation references:
 
 ### Hardware CPU Configuration
 
-There are usually a few CPU related hardware configurations available.
-On performance critical systems all power saving options (including C-
-and P-states) should be disabled and possible workload profile setting
-should be set to maximum performance. Simultaneous multithreading (SMT)
-known as HyperThreading on Intel processors should be disabled for most
-latency-sensitive workloads. Turbo Boost should be enabled if available.
+There are usually only a few CPU related hardware configurations
+available. On performance critical systems all power saving options
+(including C- and P-states) should be disabled and possible workload
+profile setting in BIOS/UEFI should be set to maximum performance.
+Simultaneous multithreading (SMT) known as HyperThreading on Intel
+processors should be disabled for most latency-sensitive workloads.
+Turbo Boost should be enabled if available.
 
 ```
 # Show current CPU setup details
@@ -345,19 +346,19 @@ numactl -H
 
 [irqbalance(1)](https://www.mankier.com/1/irqbalance) can be run as a
 service that distributes hardware interrupts evenly across cores to
-improve system performance. Except for specific cases (like certain HPC,
-NFV, or RT workloads where manual IRQ affinity setup might be needed)
-the irqbalance service should be enabled on all systems.
+improve system performance. Except for specific cases (like certain
+HPC, NFV, or RT workloads where manual IRQ affinity setup might be
+needed) the irqbalance service should be enabled on all systems.
 
-[tuned(8)](https://www.mankier.com/8/tuned) is a service that configures
-system performance parameters according to the selected performance
-profile. Examples of
+[tuned(8)](https://www.mankier.com/8/tuned) is a service that
+configures system performance parameters according to the selected
+performance profile. Examples of
 [profiles provided by tuned](https://www.mankier.com/7/tuned-profiles)
-include _desktop_, _virtual-host_, _virtual-guest_, _latency-performance_,
-and _throughput-performance_. The tuned service with suitable profile
-should be enabled on all systems. Further performance tuning can be
-considered if a default tuned profile does not provide optimal settings
-for a particular workload.
+include _desktop_, _virtual-host_, _virtual-guest_,
+_latency-performance_, and _throughput-performance_. The tuned service
+with a suitable profile should be enabled on all systems. Further
+performance tuning can be considered if a default tuned profile does
+not provide optimal settings for a particular workload.
 
 ```
 # Show the currently active tuned profile
@@ -370,8 +371,8 @@ tuned-adm profile virtual-guest
 
 tuned profiles change system parameters related to CPU scheduling,
 memory, IO, and networking. It can be helpful to investigate what
-parameters different tuned profiles are altering by reviewing the tuned
-profile configuration files under _/usr/lib/tuned_.
+parameters different tuned profiles are altering by reviewing the
+tuned profile configuration files under _/usr/lib/tuned_.
 
 Custom tuned profiles can be created if needed, see
 [RHEL Customizing TuneD profiles guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/customizing-tuned-profiles_monitoring-and-managing-system-status-and-performance).
