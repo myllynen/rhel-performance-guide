@@ -858,7 +858,7 @@ xfs_info /dev/sdX1
 ### Block Device Preparation and Parameters
 
 Ensure correct RAID level and disk type specific BIOS/HBA parameters are
-in use. For advanced options like LVM striping multipath options, and
+in use. For advanced options like LVM striping multipath options and
 VDO see the above listed Red Hat documentation.
 
 <pre>
@@ -1047,7 +1047,7 @@ ethtool -L eth0 combined N
 </pre>
 
 <pre>
-# <a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_for_real_time/9/html/optimizing_rhel_9_for_real_time_for_low_latency_operation/assembly_network-determinism-tips_optimizing-rhel9-for-real-time-for-low-latency-operation#optimizing-rhel-for-latency-or-throughput-sensitive-services_assembly_network-determinism-tips"">Optimizing RHEL for latency or throughput-sensitive services</a>
+# <a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_for_real_time/9/html/optimizing_rhel_9_for_real_time_for_low_latency_operation/assembly_network-determinism-tips_optimizing-rhel9-for-real-time-for-low-latency-operation#optimizing-rhel-for-latency-or-throughput-sensitive-services_assembly_network-determinism-tips">Optimizing RHEL for latency or throughput-sensitive services</a>
 # <a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/configuring_and_managing_networking/configuring-ethtool-settings-in-networkmanager-connection-profiles_configuring-and-managing-networking#proc_configuring-an-ethtool-coalesce-settings-by-using-nmcli_configuring-ethtool-settings-in-networkmanager-connection-profiles">Configuring an ethtool coalesce setting by using nmcli</a>
 ethtool -c eth0
 ethtool -C eth0 rx-usecs 100
