@@ -9,9 +9,10 @@ Themed page: [https://myllynen.github.io/rhel-performance-guide](https://myllyne
 
 This page provides a compact and to-the-point
 [Red Hat Enterprise Linux (RHEL)](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux)
-CPU, memory, IO, and network performance guide covering most relevant
-tuning parameters and monitoring commands and tools. Diagnosing and
-monitoring individual processes is also covered.
+CPU, memory, IO, and network performance guide focusing on the most
+relevant tuning parameters and monitoring commands and tools. It begins
+by covering the diagnosis and monitoring of individual processes to
+help gain a better understanding of the behavior of relevant processes.
 
 Topics like designing cloud-native applications, optimizing containers,
 and tuning virtualization platforms are out of scope for this document.
@@ -77,6 +78,9 @@ anything unless PCP tools are fetching for metrics so it is typically
 fine to enable it also on production systems. One of the notable
 benefits of PCP is that all the commands work both on live systems and
 with archived metrics as well.
+
+For power consumption related investigations with PCP, see
+[pmda-denki handbook](https://fluxcoil.net/files/pmda-denki-handbook-publish/denki.html).
 
 ## Warning
 
@@ -936,6 +940,8 @@ pmrep -p filesys<TAB>
 pmrep -p mounts<TAB>
 pmrep -p disk<TAB>
 pmrep -p vfs<TAB>
+# Investigate FS-specific details
+pmrep -p xfs.perdev.log<TAB>
 ```
 
 See also [PCP](https://pcp.io/) tools
@@ -1163,6 +1169,8 @@ ss -noemitaup                           # or: pcp ss -noemitau
 ss -lntup                               # or: pcp ss -lntu
 ss -nrt                                 # or: pcp ss -nt
 ```
+
+The _pcp ss_ commands require the PCP sockets PMDA being installed.
 
 See also [PCP](https://pcp.io/) tools
 [pcp-atop(1)](https://man7.org/linux/man-pages/man1/pcp-atop.1.html),
