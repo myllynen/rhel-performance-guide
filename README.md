@@ -1179,7 +1179,7 @@ See also [PCP](https://pcp.io/) tools
 [PCP BPF PMDA netatop module](https://man7.org/linux/man-pages/man1/pmdabpf.1.html),
 and _tcp*_ commands from the _bcc-tools_ package.
 
-#### Per-process Monitoring
+#### Per-Process Network Monitoring
 
 ```
 # Monitor per-port/pid network connections
