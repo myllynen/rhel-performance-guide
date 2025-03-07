@@ -1067,14 +1067,16 @@ If unsure let tuned to configure the relevant parameters.
 
 <pre>
 # <a href="https://access.redhat.com/solutions/85913">What are the implications of changing socket buffer sizes?</a>
-net.core.rmem_max = 16777216
-net.core.wmem_max = 16777216
+net.core.rmem_default = 4194304
+net.core.rmem_max = 4194304
+net.core.wmem_default = 4194304
+net.core.wmem_max = 4194304
 </pre>
 
 <pre>
 # <a href="https://access.redhat.com/solutions/168483">How do I tune RHEL for better TCP performance?</a>
-net.ipv4.tcp_rmem = 4096 87380 16777216
-net.ipv4.tcp_wmem = 4096 87380 16777216
+net.ipv4.tcp_rmem = 4096 87380 4194304
+net.ipv4.tcp_wmem = 4096 87380 4194304
 </pre>
 
 <pre>
