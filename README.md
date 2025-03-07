@@ -340,9 +340,11 @@ processors should be disabled for most latency-sensitive workloads.
 Turbo Boost should be enabled if available.
 
 ```
-# Show current CPU setup details
+# Show CPU basic information
+lscpu | grep -Ei '^cpu\(|model |thread|core|socket' | grep -v scaling
+# Show CPU setup details
 lscpu
-# Show current CPU status summary
+# Show CPU status summary
 lscpu -e
 # Show compact NUMA layout
 numactl -H
