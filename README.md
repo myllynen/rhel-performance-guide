@@ -912,6 +912,8 @@ Many of the tuned profiles set these up properly for most cases.
 # <a href="https://www.kernel.org/doc/Documentation/sysctl/vm.txt">https://www.kernel.org/doc/Documentation/sysctl/vm.txt</a>
 vm.dirty_ratio = N
 vm.dirty_background_ratio = N
+vm.dirty_writeback_centisecs = N
+vm.dirty_expire_centisecs = N
 vm.swappiness = N
 </pre>
 
