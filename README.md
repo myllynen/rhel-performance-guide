@@ -781,6 +781,12 @@ pmrep -p -t 2 :numa-pgmigrate-per-node
 pmrep -p mem<TAB>
 ```
 
+[numatop(8)](https://www.mankier.com/8/numatop) supports a limited
+number of CPUs but where available it can be a very helpful tool, see
+the
+[Intel numatop article](https://www.intel.com/content/www/us/en/developer/articles/technical/numatop-introduction.html)
+for more details.
+
 See also [PCP](https://pcp.io/) tools
 [pcp-atop(1)](https://man7.org/linux/man-pages/man1/pcp-atop.1.html),
 [pcp-htop(1)](https://man7.org/linux/man-pages/man1/pcp-htop.1.html),
