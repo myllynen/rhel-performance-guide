@@ -9,10 +9,10 @@ Themed page: [https://myllynen.github.io/rhel-performance-guide](https://myllyne
 
 This page provides a compact and to-the-point
 [Red Hat Enterprise Linux (RHEL)](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux)
-CPU, memory, IO, and network performance guide focusing on the most
+CPU, GPU, memory, IO, and network performance guide focusing on the most
 relevant tuning parameters and monitoring commands and tools. It begins
-by covering the diagnosis and monitoring of individual processes to
-help gain a better understanding of the behavior of relevant processes.
+by covering the diagnosis and monitoring of individual processes to help
+gain a better understanding of the behavior of relevant processes.
 
 Topics like designing cloud-native applications, optimizing containers,
 and tuning virtualization platforms are out of scope for this document.
@@ -185,6 +185,13 @@ pmrep -gp -t 2 -i '.*PROCNAME.*' :proc-cpu :proc-cpu-ext
 # Report process CPU usage details
 perf top -Kgnv -d 2 -e cycles:u -s cpu,pid,comm,dso,sym -p PID
 ```
+
+### Process GPU Usage Related Information
+
+In addition to vendor-specific tools evaluate at least
+[gpustat](https://github.com/wookayin/gpustat),
+[https://github.com/XuehaiPan/nvitop](nvitop), and
+[https://github.com/Syllo/nvtop](https://github.com/Syllo/nvtop).
 
 ### Process Memory Usage Related Information
 
@@ -545,6 +552,27 @@ linpack ...
 lmbench ...
 sysbench ...
 ```
+
+## GPU Tuning and Monitoring
+
+There are no GPU-related kernel or RHEL-level parameters that can be
+generally recommended for evaluation. It is advisable to refer to
+vendor documentation and guidelines. Different user-space stacks may
+require different approaches. For example, tuning CUDA often involves
+improving code efficiency and profiling.
+
+### GPU Related Monitoring and Testing
+
+In addition to vendor-specific tools evaluate at least
+[gpustat](https://github.com/wookayin/gpustat),
+[https://github.com/XuehaiPan/nvitop](nvitop), and
+[https://github.com/Syllo/nvtop](https://github.com/Syllo/nvtop).
+
+Also consider enabing relevant PCP PMDAs, typically
+[amdgpu](https://man7.org/linux/man-pages/man1/pmdaamdgpu.1.html),
+[nvidia](https://man7.org/linux/man-pages/man1/pmdanvidia.1.html), and
+[openmetrics](https://man7.org/linux/man-pages/man1/pmdaopenmetrics.1.html)
+with [vLLM](https://www.redhat.com/en/topics/ai/what-is-vllm) enabled.
 
 ## Memory Tuning and Monitoring
 
