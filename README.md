@@ -193,6 +193,12 @@ In addition to vendor-specific tools evaluate at least
 [https://github.com/XuehaiPan/nvitop](nvitop), and
 [https://github.com/Syllo/nvtop](https://github.com/Syllo/nvtop).
 
+Also consider enabing relevant PCP PMDAs, typically
+[amdgpu](https://man7.org/linux/man-pages/man1/pmdaamdgpu.1.html),
+[nvidia](https://man7.org/linux/man-pages/man1/pmdanvidia.1.html), and
+[openmetrics](https://man7.org/linux/man-pages/man1/pmdaopenmetrics.1.html)
+with [vLLM](https://www.redhat.com/en/topics/ai/what-is-vllm) enabled.
+
 ### Process Memory Usage Related Information
 
 ```
@@ -1203,7 +1209,9 @@ ss -lntup                               # or: pcp ss -lntu
 ss -nrt                                 # or: pcp ss -nt
 ```
 
-The _pcp ss_ commands require the PCP sockets PMDA being installed.
+The _pcp ss_ commands require the
+[PCP sockets PMDA](https://man7.org/linux/man-pages/man1/pmdasockets.1.html)
+being installed.
 
 See also [PCP](https://pcp.io/) tools
 [pcp-atop(1)](https://man7.org/linux/man-pages/man1/pcp-atop.1.html),
