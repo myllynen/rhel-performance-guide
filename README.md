@@ -22,12 +22,12 @@ functions, real-time) are not the focus for this document but some
 aspects discussed here might be beneficial with such workloads as well.
 
 The decision when to spend hours and days with low-level performance
-tuning and monitoring instead of merely throwing more (virtual)
-hardware to the problem is left to the reader. Depending on the case
-either approach might turn out to be the more cost-effective one.
-However, some of the considerations and hints below might provide
-insight when and what kind of additional resources would be most
-beneficial in a particular situation. In general,
+tuning and monitoring instead of merely throwing more (virtual) hardware
+to the problem is left to the reader. Depending on the case either
+approach might turn out to be the more cost-effective one. However, some
+of the considerations and hints below might provide insight when and
+what kind of additional resources would be most beneficial in a
+particular situation. In general,
 [right-sizing](https://www.redhat.com/en/blog/optimize-public-cloud-workloads-rhel-red-hat-insights-resource-optimization)
 (virtual) hardware or cloud instances might prove to be difficult
 without good understanding of the workload characteristics.
@@ -39,8 +39,8 @@ system performance visualization with [PCP](https://pcp.io/) (see
 [part 2](https://www.redhat.com/en/blog/visualizing-system-performance-rhel-8-using-performance-co-pilot-pcp-and-grafana-part-2),
 and
 [part 3](https://www.redhat.com/en/blog/visualizing-system-performance-rhel-8-part-3-kernel-metric-graphing-performance-co-pilot-grafana-and-bpftrace)),
-and [Prometheus](https://prometheus.io/) are often extremely helpful
-and should be considered especially in larger environments.
+and [Prometheus](https://prometheus.io/) are often extremely helpful and
+should be considered especially in larger environments.
 
 Reading the
 [Initial investigation for any performance issue](https://access.redhat.com/articles/1162133)
@@ -84,19 +84,19 @@ For power consumption related investigations with PCP, see
 
 ## Warning
 
-There are *many* performance tunables listed below. They are listed
-here to provide a collection of references of occasionally relevant
-tunables. They are *not* all meant to be taken into use! Only when the
-default settings, the most suitable tuned profile (see below), and
-application specific recommendations fail to provide appropriate level
-of performance, the below tunables could be considered to be evaluated
-and tested.
+There are *many* performance tunables listed below. They are listed here
+to provide a collection of references of occasionally relevant tunables.
+They are *not* all meant to be taken into use! Only when the default
+settings, the most suitable tuned profile (see below), and application
+specific recommendations fail to provide appropriate level of
+performance, the below tunables could be considered to be evaluated and
+tested.
 
 No tunable should be taken into use without understanding its effects
-and side-effects under different kinds of loads and verifying its
-impact by rigorous testing. Before each tunable links explaining their
-purpose are provided to help the reader to understand whether a tunable
-might be appropriate and helpful for a particular system and workload.
+and side-effects under different kinds of loads and verifying its impact
+by rigorous testing. Before each tunable links explaining their purpose
+are provided to help the reader to understand whether a tunable might be
+appropriate and helpful for a particular system and workload.
 
 Do *not* blindly apply any tunable on production systems without fully
 understanding what it is about!
@@ -361,19 +361,19 @@ numactl -H
 
 [irqbalance(1)](https://www.mankier.com/1/irqbalance) can be run as a
 service that distributes hardware interrupts evenly across cores to
-improve system performance. Except for specific cases (like certain
-HPC, NFV, or RT workloads where manual IRQ affinity setup might be
-needed) the _irqbalance_ service should be enabled on all systems.
+improve system performance. Except for specific cases (like certain HPC,
+NFV, or RT workloads where manual IRQ affinity setup might be needed)
+the _irqbalance_ service should be enabled on all systems.
 
-[tuned(8)](https://www.mankier.com/8/tuned) is a service that
-configures system performance parameters according to the selected
-performance profile. Examples of
+[tuned(8)](https://www.mankier.com/8/tuned) is a service that configures
+system performance parameters according to the selected performance
+profile. Examples of
 [profiles provided by tuned](https://www.mankier.com/7/tuned-profiles)
 include _desktop_, _virtual-host_, _virtual-guest_,
-_latency-performance_, and _throughput-performance_. The _tuned_
-service with a suitable profile should be enabled on all systems.
-Further performance tuning can be considered if a default tuned
-profile does not provide optimal settings for a particular workload.
+_latency-performance_, and _throughput-performance_. The _tuned_ service
+with a suitable profile should be enabled on all systems. Further
+performance tuning can be considered if a default tuned profile does not
+provide optimal settings for a particular workload.
 
 ```
 # Show the currently active tuned profile
@@ -386,8 +386,8 @@ tuned-adm profile virtual-guest
 
 tuned profiles change system parameters related to CPU scheduling,
 memory, IO, and networking. It can be helpful to investigate what
-parameters different tuned profiles are altering by reviewing the
-tuned profile configuration files under _/usr/lib/tuned_.
+parameters different tuned profiles are altering by reviewing the tuned
+profile configuration files under _/usr/lib/tuned_.
 
 Custom tuned profiles can be created if needed, see
 [RHEL Customizing TuneD profiles guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/customizing-tuned-profiles_monitoring-and-managing-system-status-and-performance).
@@ -396,8 +396,8 @@ Custom tuned profiles can be created if needed, see
 
 Many of the tuned profiles set these up properly for most cases. As
 stated above, do *not* apply any of these tunables blindly! Also note
-that many of the values shown below are either RHEL or tuned
-defaults, not values that would work optimally everywhere!
+that many of the values shown below are either RHEL or tuned defaults,
+not values that would work optimally everywhere!
 
 For larger applications refer to vendor documentation for exact
 recommendations and consider application parameter tuning as well.
@@ -448,9 +448,8 @@ mce=ignore_ce
 skew_tick=1
 </pre>
 
-Further tuning tips especially for low latency and real-time
-workloads are described in the RHEL Real Time guides and RHKB
-articles:
+Further tuning tips especially for low latency and real-time workloads
+are described in the RHEL Real Time guides and RHKB articles:
 
 * [RHEL for Real Time guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_for_real_time/9)
 * [What are CPU "C-states" and how to disable them if needed?](https://access.redhat.com/solutions/202743)
@@ -468,14 +467,14 @@ complexity of system tuning tasks:
 * [How can I reduce jitter by using CPU and IRQ pinning with tuna?](https://access.redhat.com/solutions/2171211)
 * [How can I reduce jitter by using CPU and IRQ pinning without using tuna?](https://access.redhat.com/solutions/2144921)
 
-[nice(1)](https://man7.org/linux/man-pages/man1/nice.1.html) can be
-used to change and run a process with modified scheduling priority.
-[chrt(1)](https://man7.org/linux/man-pages/man1/chrt.1.html) can be
-used to check and set real-time scheduling attributes of a process.
-[taskset(1)](https://man7.org/linux/man-pages/man1/taskset.1.html)
-can be used to check and set CPU affinity of a process.
-[numactl(8)](https://man7.org/linux/man-pages/man8/numactl.8.html)
-can be used to run processes with a specific NUMA binding policy.
+[nice(1)](https://man7.org/linux/man-pages/man1/nice.1.html) can be used
+to change and run a process with modified scheduling priority.
+[chrt(1)](https://man7.org/linux/man-pages/man1/chrt.1.html) can be used
+to check and set real-time scheduling attributes of a process.
+[taskset(1)](https://man7.org/linux/man-pages/man1/taskset.1.html) can
+be used to check and set CPU affinity of a process.
+[numactl(8)](https://man7.org/linux/man-pages/man8/numactl.8.html) can
+be used to run processes with a specific NUMA binding policy.
 
 ```
 # Pin process 1234 to CPU core 2
@@ -556,10 +555,10 @@ sysbench ...
 ## GPU Tuning and Monitoring
 
 There are no GPU-related kernel or RHEL-level parameters that can be
-generally recommended for evaluation. It is advisable to refer to
-vendor documentation and guidelines. Different user-space stacks may
-require different approaches. For example, tuning CUDA often involves
-improving code efficiency and profiling.
+generally recommended for evaluation. It is advisable to refer to vendor
+documentation and guidelines. Different user-space stacks may require
+different approaches. For example, tuning CUDA often involves improving
+code efficiency and profiling.
 
 ### GPU Related Monitoring and Testing
 
@@ -591,29 +590,27 @@ Memory related documentation references:
 
 ### Hardware and System-wide Memory Configuration
 
-There are usually not many memory related hardware configurations
-but it is a good idea to check Memory Protection which should be
-Enabled and also make sure Node Interleaving is Disabled.
+There are usually not many memory related hardware configurations but it
+is a good idea to check Memory Protection which should be Enabled and
+also make sure Node Interleaving is Disabled.
 
-The suitable amount of swap depends on the use case but a good
-starting point could be 4 GB. Having no swap at all rarely provides
-for the best performance and using huge amounts of swap is usually
-not helpful.
+The suitable amount of swap depends on the use case but a good starting
+point could be 4 GB. Having no swap at all rarely provides for the best
+performance and using huge amounts of swap is usually not helpful.
 
-The Linux kernel uses memory not in use by applications for
-buffering and caching. While buffering and caching is a good thing
-constant paging and swapping is not and extreme swapping can render
-the system almost completely unresponsive. The most important
-swapping metric is swapping activity, that is, how much pages are
-being swapped in and out, not the plain amount of swap currently in
-use. There might be a portion of swap in use at any given time but
-in case there is no constant swapping activity then this swap usage
-is a merely a sign that there has been a memory pressure situation
-in the past and the kernel paged out some idle pages or processes to
-make room for actively running applications, or perhaps for
-buffering and caching. Since all modern operating systems use demand
-paging the swapped out pages are not proactively swapped back into
-the main memory until there is a real need for them so swap may
+The Linux kernel uses memory not in use by applications for buffering
+and caching. While buffering and caching is a good thing constant paging
+and swapping is not and extreme swapping can render the system almost
+completely unresponsive. The most important swapping metric is swapping
+activity, that is, how much pages are being swapped in and out, not the
+plain amount of swap currently in use. There might be a portion of swap
+in use at any given time but in case there is no constant swapping
+activity then this swap usage is a merely a sign that there has been a
+memory pressure situation in the past and the kernel paged out some idle
+pages or processes to make room for actively running applications, or
+perhaps for buffering and caching. Since all modern operating systems
+use demand paging the swapped out pages are not proactively swapped back
+into the main memory until there is a real need for them so swap may
 remain long in use after a memory pressure situation.
 
 See the following articles for more discussion on swap:
@@ -622,9 +619,8 @@ See the following articles for more discussion on swap:
 * [https://chrisdown.name/2018/01/02/in-defence-of-swap.html](https://chrisdown.name/2018/01/02/in-defence-of-swap.html)
 * [https://www.redhat.com/en/blog/do-we-really-need-swap-modern-systems](https://www.redhat.com/en/blog/do-we-really-need-swap-modern-systems)
 
-In case the system runs out of memory the dreaded OOM-killer will
-act (the per-process oom related tunables are described in the
-second link):
+In case the system runs out of memory the dreaded OOM-killer will act
+(the per-process oom related tunables are described in the second link):
 
 * [How does the OOM-Killer select a task to kill?](https://access.redhat.com/solutions/66458)
 * [https://www.kernel.org/doc/Documentation/filesystems/proc.txt](https://www.kernel.org/doc/Documentation/filesystems/proc.txt)
@@ -641,10 +637,10 @@ free -m
 
 ### System V IPC
 
-Shared memory, semaphore, and message queue configuration on the
-system should be changed when applications require more of these
-resources than is available by default. Please refer to application
-documentation for their exact requirements.
+Shared memory, semaphore, and message queue configuration on the system
+should be changed when applications require more of these resources than
+is available by default. Please refer to application documentation for
+their exact requirements.
 
 * [What are the kernel parameters for IPC?](https://access.redhat.com/solutions/20519)
 * [What are the kernel parameters available for System V IPC tuning?](https://access.redhat.com/solutions/431633)
@@ -664,19 +660,19 @@ ipcs -a
 Transparent Huge Pages (THP) are enabled by default on RHEL and are
 usually helpful with most applications. However, some memory heavy
 applications such as databases often benefit from static huge pages
-especially on very large memory systems. Some applications (or
-certain application versions) even have
+especially on very large memory systems. Some applications (or certain
+application versions) even have
 [higher CPU usage with THP](https://access.redhat.com/solutions/1265183).
 
 Considering the above, it is best to check the configuration
 recommendations of each application and then measure the results of
 different approaches. Depending on the use case and workload profile
-(e.g., latency or throughput sensitive) either the default THP,
-possibly customized khugepaged parameters, or static huge pages
-setup may yield the best performance. Exotic setups like NUMA node
-specific huge page configurations are rarely helpful. Note that some
-application vendors recommend disabling huge pages altogether;
-please refer to vendor documentation for the exact recommendations.
+(e.g., latency or throughput sensitive) either the default THP, possibly
+customized khugepaged parameters, or static huge pages setup may yield
+the best performance. Exotic setups like NUMA node specific huge page
+configurations are rarely helpful. Note that some application vendors
+recommend disabling huge pages altogether; please refer to vendor
+documentation for the exact recommendations.
 
 * [How can I configure hugepages in RHEL?](https://access.redhat.com/solutions/33613)
 * [How to use, monitor, and disable transparent hugepages in RHEL?](https://access.redhat.com/solutions/46111)
@@ -700,17 +696,15 @@ cat /proc/sys/vm/hugetlb_shm_group
 
 ### NUMA
 
-NUMA (non-uniform memory access) setup can be crucial on larger
-systems. On virtual platforms it should also be made sure NUMA
-topology awareness is propagated properly by CPU pinning in case
-applications are running on large VMs spanning over several NUMA
-nodes.
+NUMA (non-uniform memory access) setup can be crucial on larger systems.
+On virtual platforms it should also be made sure NUMA topology awareness
+is propagated properly by CPU pinning in case applications are running
+on large VMs spanning over several NUMA nodes.
 
-By default automatic kernel NUMA balancing is used. This is suitable
-in the majority of use cases but certain applications (like
-databases) may benefit from disabling this feature. Again, please
-refer to application specific documentation for further details and
-recommendations on this.
+By default automatic kernel NUMA balancing is used. This is suitable in
+the majority of use cases but certain applications (like databases) may
+benefit from disabling this feature. Again, please refer to application
+specific documentation for further details and recommendations on this.
 
 <pre>
 # Show current NUMA usage
@@ -726,14 +720,13 @@ In some relatively rare cases using
 [numad(8)](https://www.mankier.com/8/numad) instead of the kernel
 automatic NUMA balancing might provide some performance benefits,
 however this should be used only when measured to have positive
-performance impact. Sometimes static NUMA bindings can outperform
-both automatic and [numad(8)](https://www.mankier.com/8/numad) based
-balancing, this should be considered only for very specific
-workloads (such as certain VNFs). See
-[taskset(1)](https://man7.org/linux/man-pages/man1/taskset.1.html)
-and
-[numactl(8)](https://man7.org/linux/man-pages/man8/numactl.8.html)
-for details on CPU affinity and static NUMA bindings.
+performance impact. Sometimes static NUMA bindings can outperform both
+automatic and [numad(8)](https://www.mankier.com/8/numad) based
+balancing, this should be considered only for very specific workloads
+(such as certain VNFs). See
+[taskset(1)](https://man7.org/linux/man-pages/man1/taskset.1.html) and
+[numactl(8)](https://man7.org/linux/man-pages/man8/numactl.8.html) for
+details on CPU affinity and static NUMA bindings.
 
 * [https://www.redhat.com/en/blog/mysteries-numa-memory-management-revealed](https://www.redhat.com/en/blog/mysteries-numa-memory-management-revealed)
 
@@ -742,13 +735,13 @@ for details on CPU affinity and static NUMA bindings.
 See the above sections about IPC, THP, and NUMA related parameters.
 
 Many of the tuned profiles set these up properly for most cases. As
-stated above, do *not* apply any of these tunables blindly! Also
-note that many of the values shown below are either RHEL or tuned
-defaults, not values that would work optimally everywhere!
+stated above, do *not* apply any of these tunables blindly! Also note
+that many of the values shown below are either RHEL or tuned defaults,
+not values that would work optimally everywhere!
 
-Do NOT change any of these parameters without testing and
-understanding their meaning, they might cause negative performance
-impact especially under heavy load if changed inappropriately.
+Do NOT change any of these parameters without testing and understanding
+their meaning, they might cause negative performance impact especially
+under heavy load if changed inappropriately.
 
 <pre>
 # <a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/configuring-an-operating-system-to-optimize-memory-access_monitoring-and-managing-system-status-and-performance">RHEL documentation section</a>
@@ -782,10 +775,10 @@ vm.overcommit_memory = N
 
 ### Configuring Applications and Services
 
-The most important configuration is to have enough memory available
-for running applications and services to avoid constant swapping or
-OOM. For details on IPC, THP, and NUMA configuration for each
-application please refer to their documentation.
+The most important configuration is to have enough memory available for
+running applications and services to avoid constant swapping or OOM. For
+details on IPC, THP, and NUMA configuration for each application please
+refer to their documentation.
 
 ### Memory Related Monitoring and Testing
 
@@ -894,8 +887,8 @@ xfs_info /dev/sdX1
 ### Block Device Preparation and Parameters
 
 Ensure correct RAID level and disk type specific BIOS/HBA parameters are
-in use. For advanced options like LVM striping multipath options and
-VDO see the above listed Red Hat documentation.
+in use. For advanced options like LVM striping multipath options and VDO
+see the above listed Red Hat documentation.
 
 <pre>
 # <a href="https://access.redhat.com/solutions/5427">What is the suggested I/O scheduler for RHEL with virtualization?</a>
@@ -956,8 +949,8 @@ vm.swappiness = N
 ### Configuring Applications and Services
 
 Consider using dedicated partitions as needed and per vendor
-recommendations. For recommendations for applications please refer
-to vendor documentation.
+recommendations. For recommendations for applications please refer to
+vendor documentation.
 
 ### IO Related Monitoring and Testing
 
