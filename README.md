@@ -1249,7 +1249,6 @@ iperf -V ...
 * [Systems Performance: Enterprise and the Cloud book](https://www.brendangregg.com/systems-performance-2nd-edition-book.html)
 * [Linux Performance page by Brendan Gregg](https://www.brendangregg.com/linuxperf.html)
 * [Visualizing performance in RHEL](https://www.redhat.com/en/blog/visualizing-performance-red-hat-enterprise-linux-84-web-console)
-* [RHEL Troubleshooting Guide](https://github.com/myllynen/rhel-troubleshooting-guide)
 * [RHEL documentation](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/)
 * [Red Hat Knowledge Base](https://access.redhat.com/knowledgebase/)
 * [Red Hat Customer Portal](https://access.redhat.com/)
@@ -1257,4 +1256,4 @@ iperf -V ...
 ## See Also
 
 See also
-[https://github.com/myllynen/rhel-ansible-roles](https://github.com/myllynen/rhel-ansible-roles).
+[https://myllynen.github.io/rhel-performance-guide/](https://myllynen.github.io/rhel-performance-guide/).
