@@ -79,6 +79,9 @@ fine to enable it also on production systems. One of the notable
 benefits of PCP is that all the commands work both on live systems and
 with archived metrics as well.
 
+For setting up PCP automatically with Ansible, see
+[https://github.com/myllynen/rhel-perf-automation](https://github.com/myllynen/rhel-perf-automation).
+
 For power consumption related investigations with PCP, see
 [pmda-denki handbook](https://fluxcoil.net/files/pmda-denki-handbook-publish/denki.html).
 
