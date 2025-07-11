@@ -687,6 +687,7 @@ documentation for the exact recommendations.
 * [How to use, monitor, and disable transparent hugepages in RHEL?](https://access.redhat.com/solutions/46111)
 * [How do I check for hugepages usage and what is using it?](https://access.redhat.com/solutions/320303)
 * [Examining Huge Pages or Transparent Huge Pages performance](https://access.redhat.com/articles/781653)
+* [Does RHEL glibc support the "glibc.malloc.hugetlb" tunable?](https://access.redhat.com/solutions/7088981)
 * [https://www.kernel.org/doc/Documentation/vm/hugetlbpage.txt](https://www.kernel.org/doc/Documentation/vm/hugetlbpage.txt)
 * [https://alexandrnikitin.github.io/blog/transparent-hugepages-measuring-the-performance-impact/](https://alexandrnikitin.github.io/blog/transparent-hugepages-measuring-the-performance-impact/)
 
