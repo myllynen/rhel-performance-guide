@@ -593,6 +593,7 @@ Memory related documentation references:
 * [RHEL Detecting false sharing guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/detecting-false-sharing_monitoring-and-managing-system-status-and-performance)
 * [RHEL Performance Analysis and Tuning PDF](https://www.redhat.com/rhdc/managed-files/Handout%20Performance%20Analysis%20and%20Tuning%20Red%20Hat%20Enterprise%20Linux%202019.pdf)
 * [In defence of swap: common misconceptions blog post](https://chrisdown.name/2018/01/02/in-defence-of-swap.html)
+* [Negative effects of the RHEL default logging setup on performance](https://access.redhat.com/articles/4095141)
 * [Linux kernel VM sysctl document](https://www.kernel.org/doc/Documentation/sysctl/vm.txt)
 * [RHEL technology capabilities and limits page](https://access.redhat.com/articles/rhel-limits)
 * [Linux Performance page by Brendan Gregg](https://www.brendangregg.com/linuxperf.html)
