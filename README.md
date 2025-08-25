@@ -464,6 +464,15 @@ are described in the RHEL Real Time guides and RHKB articles:
 * [What are CPU "C-states" and how to disable them if needed?](https://access.redhat.com/solutions/202743)
 * [Power management features and latency spikes](https://access.redhat.com/articles/65410)
 
+Disabling
+[CPU vulnerability mitigations](https://en.wikipedia.org/wiki/Transient_execution_CPU_vulnerability)
+should not be done lightly, if at all. On modern kernels and recent
+CPUs, the performance impact is usually minimal, though occasional
+slowdowns may still occur. Any decision to disable mitigations requires
+careful consideration from a security perspective, along with thorough
+application and workload benchmarking to ensure the most appropriate
+approach for the given environment.
+
 ### Additional Configurations and Tools
 
 For a system partitioning example see
