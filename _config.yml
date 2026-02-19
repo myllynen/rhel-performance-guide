@@ -3,8 +3,11 @@ description: A complete guide to RHEL performance tuning and monitoring
 
 remote_theme: clearpathrobotics/jekyll-rtd-theme
 
+plugins:
+  - jekyll-remote-theme
+
 defaults:
   - scope:
-      path: "README.md"
+      path: README.md
     values:
-      permalink: "index.html"
+      permalink: index.html
