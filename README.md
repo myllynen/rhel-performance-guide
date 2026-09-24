@@ -193,10 +193,10 @@ perf top -Kgnv -d 2 -e cycles:u -s cpu,pid,comm,dso,sym -p PID
 
 In addition to vendor-specific tools evaluate at least
 [gpustat](https://github.com/wookayin/gpustat),
-[https://github.com/XuehaiPan/nvitop](nvitop), and
-[https://github.com/Syllo/nvtop](https://github.com/Syllo/nvtop).
+[nvitop](https://github.com/XuehaiPan/nvitop), and
+[nvtop](https://github.com/Syllo/nvtop).
 
-Also consider enabing relevant PCP PMDAs, typically
+Also consider enabling relevant PCP PMDAs, typically
 [amdgpu](https://man7.org/linux/man-pages/man1/pmdaamdgpu.1.html),
 [nvidia](https://man7.org/linux/man-pages/man1/pmdanvidia.1.html), and
 [openmetrics](https://man7.org/linux/man-pages/man1/pmdaopenmetrics.1.html)
@@ -525,7 +525,7 @@ pmrep -p kernel<TAB>
 
 ```
 # Show instructions-per-cycle (IPC) statistics,
-# higher isns-per-cycle hint CPU bound workload
+# higher insns-per-cycle hint CPU bound workload
 perf stat -a -- sleep 10
 # Report CPU migrations
 perf stat -e migrations -I 2000 -a
@@ -582,10 +582,10 @@ code efficiency and profiling.
 
 In addition to vendor-specific tools evaluate at least
 [gpustat](https://github.com/wookayin/gpustat),
-[https://github.com/XuehaiPan/nvitop](nvitop), and
-[https://github.com/Syllo/nvtop](https://github.com/Syllo/nvtop).
+[nvitop](https://github.com/XuehaiPan/nvitop), and
+[nvtop](https://github.com/Syllo/nvtop).
 
-Also consider enabing relevant PCP PMDAs, typically
+Also consider enabling relevant PCP PMDAs, typically
 [amdgpu](https://man7.org/linux/man-pages/man1/pmdaamdgpu.1.html),
 [nvidia](https://man7.org/linux/man-pages/man1/pmdanvidia.1.html), and
 [openmetrics](https://man7.org/linux/man-pages/man1/pmdaopenmetrics.1.html)
@@ -601,7 +601,6 @@ Memory related documentation references:
 * [RHEL Profiling memory accesses with perf mem guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/profiling-memory-accesses-with-perf-mem_monitoring-and-managing-system-status-and-performance)
 * [RHEL Detecting false sharing guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/detecting-false-sharing_monitoring-and-managing-system-status-and-performance)
 * [RHEL Performance Analysis and Tuning PDF](https://www.redhat.com/rhdc/managed-files/Handout%20Performance%20Analysis%20and%20Tuning%20Red%20Hat%20Enterprise%20Linux%202019.pdf)
-* [In defence of swap: common misconceptions blog post](https://chrisdown.name/2018/01/02/in-defence-of-swap.html)
 * [Negative effects of the RHEL default logging setup on performance](https://access.redhat.com/articles/4095141)
 * [Linux kernel VM sysctl document](https://www.kernel.org/doc/Documentation/sysctl/vm.txt)
 * [RHEL technology capabilities and limits page](https://access.redhat.com/articles/rhel-limits)
@@ -635,8 +634,8 @@ remain long in use after a memory pressure situation.
 See the following articles for more discussion on swap:
 
 * [What is the recommended swap size for Red Hat platforms?](https://access.redhat.com/solutions/15244)
-* [https://chrisdown.name/2018/01/02/in-defence-of-swap.html](https://chrisdown.name/2018/01/02/in-defence-of-swap.html)
-* [https://www.redhat.com/en/blog/do-we-really-need-swap-modern-systems](https://www.redhat.com/en/blog/do-we-really-need-swap-modern-systems)
+* [In defence of swap: common misconceptions](https://chrisdown.name/2018/01/02/in-defence-of-swap.html)
+* [Do we really need swap on modern systems?](https://www.redhat.com/en/blog/do-we-really-need-swap-modern-systems)
 
 In case the system runs out of memory the dreaded OOM-killer will act
 (the per-process oom related tunables are described in the second link):
@@ -702,7 +701,7 @@ documentation for the exact recommendations.
 * [https://alexandrnikitin.github.io/blog/transparent-hugepages-measuring-the-performance-impact/](https://alexandrnikitin.github.io/blog/transparent-hugepages-measuring-the-performance-impact/)
 
 ```
-# Show current huge hage statistics
+# Show current huge page statistics
 grep Huge /proc/meminfo
 # Show current per-NUMA-node huge page statistics
 grep -H Huge /sys/devices/system/node/node*/meminfo
@@ -843,7 +842,7 @@ pmrep -1gU -t 2 -J 5 proc.hog.mem
 # Report process memory usage statistics
 pmrep -gp -t 2 -i PROCNAME :proc-mem :proc-mem-ext
 # Report process per-NUMA-node memory statistics
-watch -d=cumu -n 2 numastat -c PID
+watch -d=cumu -n 2 numastat -c -p PID
 # Summarize memory related system calls
 strace -fc -e trace=%memory COMMAND
 # Report page migrations
